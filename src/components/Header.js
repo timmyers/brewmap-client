@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import VerticalLayout from 'Components/VerticalLayout';
 import { withStyles } from 'material-ui/styles';
@@ -28,5 +29,9 @@ const Header = ({ classes }) => (
     </VerticalLayout>
   </Paper>
 );
+
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(Header);
