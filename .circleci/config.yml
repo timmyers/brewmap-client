@@ -23,4 +23,31 @@ jobs:
           root: .
           # Must be relative path from root
           paths:
+            - dist
+  deploy:
+    docker:
+      - image: timmyers/circleci-node-aws
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          working_directory: ~/repo/dist
+          name: Deploy to development
+          command: |
+            aws s3 sync . s3://www.brewmap.co
+            aws cloudfront create-invalidation --distribution-id E2BKA2AXW5LSMP --paths "/*"
+
+workflows:
+  version: 2
+  deployment:
+    jobs:
+      - build
+      - deploy:
+          requires:
             - build
+          filters:
+            branches:
+              only:
+                - master
