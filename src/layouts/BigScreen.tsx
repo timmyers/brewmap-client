@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Map from 'Components/Map';
 import BreweryList from 'Components/BreweryList';

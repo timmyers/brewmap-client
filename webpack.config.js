@@ -4,13 +4,19 @@ const HtmlWebpackTemplate = require('html-webpack-template');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        loaders: ['babel-loader', 'ts-loader'],
+        include: __dirname,
+        exclude: /node_modules/,
+      },
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
@@ -37,5 +43,6 @@ module.exports = {
       Layouts: path.resolve(__dirname, 'src/layouts/'),
       Components: path.resolve(__dirname, 'src/components/'),
     },
+    extensions: ['.js', '.ts.', '.tsx'],
   },
 };

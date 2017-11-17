@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import MobileDetect from 'mobile-detect';
 import BigScreen from 'Layouts/BigScreen';
 import SmallScreen from 'Layouts/SmallScreen';
