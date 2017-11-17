@@ -42,6 +42,7 @@ module.exports = {
     alias: {
       Layouts: path.resolve(__dirname, 'src/layouts/'),
       Components: path.resolve(__dirname, 'src/components/'),
+      Features: path.resolve(__dirname, 'src/features/'),
     },
     extensions: ['.js', '.ts.', '.tsx'],
   },
