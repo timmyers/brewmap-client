@@ -4,13 +4,23 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'brewmap.auth0.com',
     clientID: '_5lVzvQvik0YN4WNRX8RtryfrlqilC2Q',
-    redirectUri: 'https://www.brewmap.co/callback',
+    // redirectUri: 'https://www.brewmap.co/login',
+    redirectUri: 'http://localhost:9000/login',
     audience: 'https://brewmap.auth0.com/userinfo',
-    responseType: 'token id_token',
-    scope: 'openid',
+    responseType: 'token',
+    scope: 'openid email',
   });
 
   constructor() {
+    this.auth0.parseHash((err, authResult) => {
+      if (err) return console.error(err);
+      if (authResult && authResult.accessToken) {
+        window.location.hash = '';
+        // displayAuthResults(authResult.accessToken);
+      }
+      console.log(authResult);
+    });
+
     this.login = this.login.bind(this);
     // this.logout = this.logout.bind(this);
     // this.handleAuthentication = this.handleAuthentication.bind(this);

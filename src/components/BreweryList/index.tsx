@@ -18,8 +18,8 @@ const Inner = styled(VerticalLayout)`
 const BreweryList = (props: any) => (
   <Outer full scroll>
     <Inner>
-      {!props.data.loading && props.data.allBreweries.map((brewery: any) => (
-        <BreweryListItem brewery={brewery} />
+      {!props.data.loading && props.data.allBreweries.map((brewery: any, i: number) => (
+        <BreweryListItem brewery={brewery} key={i}/>
       ))}
     </Inner>
   </Outer>

@@ -26,8 +26,8 @@ const Map = (props: any) => (
     defaultCenter={defaultProps.center}
     defaultZoom={defaultProps.zoom}
   >
-    {!props.data.loading && props.data.allBreweries.map((brewery: any) => (
-      <Marker
+    {!props.data.loading && props.data.allBreweries.map((brewery: any, i: number) => (
+      <Marker key={i}
         lat={brewery.lat}
         lng={brewery.lng}
       />
