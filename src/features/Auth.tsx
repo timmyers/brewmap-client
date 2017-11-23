@@ -4,8 +4,8 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'brewmap.auth0.com',
     clientID: '_5lVzvQvik0YN4WNRX8RtryfrlqilC2Q',
-    // redirectUri: 'https://www.brewmap.co/login',
-    redirectUri: 'http://localhost:9000/login',
+    redirectUri: 'https://www.brewmap.co/login',
+    // redirectUri: 'http://localhost:9000/login',
     audience: 'https://brewmap.auth0.com/userinfo',
     responseType: 'token',
     scope: 'openid email',
