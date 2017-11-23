@@ -34,6 +34,8 @@ module.exports = {
       inject: false,
       template: HtmlWebpackTemplate,
       appMountId: 'root',
+      title: 'CO BrewMap',
+      favicon: './src/images/favicon.ico'
     }),
   ],
   devServer: {
