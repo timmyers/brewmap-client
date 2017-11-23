@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import GoogleMap from 'google-map-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -9,9 +10,13 @@ const defaultProps = {
   zoom: 11,
 };
 
-const Marker = (props: any) => (
-  <BeerMapMarker width={60} height={60}/>
-);
+const Marker: any = styled(BeerMapMarker)`
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: -20px;
+  top: -40px;
+`;
 
 const Map = (props: any) => (
   <GoogleMap
@@ -25,7 +30,6 @@ const Map = (props: any) => (
       <Marker
         lat={brewery.lat}
         lng={brewery.lng}
-        src="https://image.flaticon.com/icons/svg/33/33622.svg"
       />
     ))}
   </GoogleMap>

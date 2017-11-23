@@ -3,8 +3,8 @@ import * as React from 'react';
 import BeerMapMarkerImage from 'Images/beer_map_marker.svg';
 
 interface IconProps {
-  width?: number;
-  height?: number;
+  children?: React.ReactNode;
+  className?: string;
 }
 
 export const BeerMapMarker = (props : IconProps) => (
