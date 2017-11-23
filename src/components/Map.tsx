@@ -2,6 +2,7 @@ import * as React from 'react';
 import GoogleMap from 'google-map-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { BeerMapMarker } from 'Components/Icons';
 
 const defaultProps = {
   center: { lat: 39.710206, lng: -104.990482 },
@@ -9,8 +10,8 @@ const defaultProps = {
 };
 
 const Marker = (props: any) => (
-  <img src={props.src} width={40} height={40}/>
-  );
+  <BeerMapMarker width={60} height={60}/>
+);
 
 const Map = (props: any) => (
   <GoogleMap

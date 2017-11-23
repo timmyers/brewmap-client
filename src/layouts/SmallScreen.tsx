@@ -12,7 +12,7 @@ const ListHolder = styled.div`
 const SmallScreen = () => (
   <VerticalLayout>
     <Header />
-    <VerticalLayout>
+    <VerticalLayout full>
       <ListHolder>
         <BreweryList />
       </ListHolder>

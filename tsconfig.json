@@ -14,12 +14,14 @@
     "jsx": "react",
     "typeRoots": [
       "./node_modules/@types",
+      "src/types"
     ],
     "baseUrl": ".",
     "paths": {
       "Components/*": ["src/components/*"],
       "Layouts/*": ["src/layouts/*"],
-      "Features/*": ["src/features/*"]
+      "Features/*": ["src/features/*"],
+      "Images/*": ["src/images/*"]
     }
   },
 }

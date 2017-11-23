@@ -22,6 +22,10 @@ module.exports = {
         exclude: /(node_modules)/,
         use: 'babel-loader',
       },
+      {
+        test: /\.(svg)$/,
+        use: 'file-loader',
+      }
     ],
   },
   plugins: [
@@ -43,7 +47,8 @@ module.exports = {
       Layouts: path.resolve(__dirname, 'src/layouts/'),
       Components: path.resolve(__dirname, 'src/components/'),
       Features: path.resolve(__dirname, 'src/features/'),
+      Images: path.resolve(__dirname, 'src/images/'),
     },
-    extensions: ['.js', '.ts.', '.tsx'],
+    extensions: ['.js', '.ts.', '.tsx', '.svg'],
   },
 };

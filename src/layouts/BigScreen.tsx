@@ -12,9 +12,9 @@ const ListHolder = styled.div`
 `;
 
 const BigScreen = () => (
-  <VerticalLayout>
+  <VerticalLayout full>
     <Header />
-    <HorizontalLayout>
+    <HorizontalLayout full>
       <Map />
       <ListHolder>
         <BreweryList />
