@@ -1,4 +1,6 @@
 import auth0 from 'auth0-js';
+import { client } from '../apollo';
+import gql from 'graphql-tag';
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
@@ -6,7 +8,7 @@ export default class Auth {
     clientID: '_5lVzvQvik0YN4WNRX8RtryfrlqilC2Q',
     redirectUri: 'https://www.brewmap.co/login',
     // redirectUri: 'http://localhost:9000/login',
-    audience: '_5lVzvQvik0YN4WNRX8RtryfrlqilC2Q',
+    audience: 'https://www.brewmap.co',
     // audience: 'https://brewmap.auth0.com/userinfo',
     responseType: 'token',
     scope: 'openid email',
@@ -18,6 +20,19 @@ export default class Auth {
       if (authResult && authResult.accessToken) {
         window.location.hash = '';
         // displayAuthResults(authResult.accessToken);
+
+        client.mutate({
+          mutation: gql`
+            mutation {
+              authenticateUser(
+                accessToken: "${authResult.accessToken}"
+              ) {
+                id
+                token
+              }
+            }
+          `,
+        });
       }
       console.log(authResult);
     });
