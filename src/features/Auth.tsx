@@ -8,8 +8,7 @@ export default class Auth {
     clientID: '_5lVzvQvik0YN4WNRX8RtryfrlqilC2Q',
     redirectUri: 'https://www.brewmap.co/login',
     // redirectUri: 'http://localhost:9000/login',
-    audience: 'https://www.brewmap.co',
-    // audience: 'https://brewmap.auth0.com/userinfo',
+    audience: 'https://brewmap.auth0.com/userinfo',
     responseType: 'token',
     scope: 'openid email',
   });
