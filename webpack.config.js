@@ -63,6 +63,7 @@ module.exports = {
       Layouts: path.resolve(__dirname, 'src/layouts/'),
       Components: path.resolve(__dirname, 'src/components/'),
       Features: path.resolve(__dirname, 'src/features/'),
+      State: path.resolve(__dirname, 'src/state/'),
       Images: path.resolve(__dirname, 'src/images/'),
     },
     extensions: ['.js', '.ts.', '.tsx', '.svg', '.css'],

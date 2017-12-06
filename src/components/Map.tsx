@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-// import mapboxglcss from 'mapbox-gl-css';
+import { observer } from 'mobx-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { BeerMapMarker } from 'Components/Icons';
 import HorizontalLayout from 'Components/HorizontalLayout';
+import { MapStore } from 'State/map';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoidGltbXllcnMiLCJhIjoiY2phcm9uNHhsNGxyYzMzcGRpaWptMDV6ZCJ9.fI92wckRDkzqVEZipg6crQ';
@@ -88,6 +89,18 @@ class Map extends React.Component<MapProps, MapState> {
     });
     this.map.on('load', () => {
       this.setState({ ready: true });
+      const bounds = this.map.getBounds();
+      MapStore.viewboxLeft = bounds.getWest();
+      MapStore.viewboxBottom = bounds.getSouth();
+      MapStore.viewboxRight = bounds.getEast();
+      MapStore.viewboxTop = bounds.getNorth();
+    });
+    this.map.on('move', () => {
+      const bounds = this.map.getBounds();
+      MapStore.viewboxLeft = bounds.getWest();
+      MapStore.viewboxBottom = bounds.getSouth();
+      MapStore.viewboxRight = bounds.getEast();
+      MapStore.viewboxTop = bounds.getNorth();
     });
   }
 
@@ -119,12 +132,12 @@ class Map extends React.Component<MapProps, MapState> {
   }
 }
 
-const MapWithData = graphql(gql`
+const MapWithData = observer(graphql(gql`
   query {
     allBreweries {
       lat, lng, id
     }
   }
-`)(Map);
+`)(Map));
 
 export default MapWithData;

@@ -10,6 +10,7 @@
     "noImplicitAny": true,
     "module": "es2015",
     "moduleResolution": "node",
+    "experimentalDecorators": true,
     "target": "es5",
     "jsx": "react",
     "typeRoots": [
@@ -21,7 +22,8 @@
       "Components/*": ["src/components/*"],
       "Layouts/*": ["src/layouts/*"],
       "Features/*": ["src/features/*"],
-      "Images/*": ["src/images/*"]
+      "Images/*": ["src/images/*"],
+      "State/*": ["src/state/*"]
     }
   },
 }
