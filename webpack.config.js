@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTemplate = require('html-webpack-template');
 const DashboardPlugin = require('webpack-dashboard/plugin');
@@ -41,6 +42,10 @@ module.exports = {
       title: 'CO BrewMap',
       favicon: './src/images/favicon.ico'
     }),
+    new webpack.DefinePlugin({
+      'process.env.API_URL': JSON.stringify(process.env.API_URL)
+    }),
+
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),

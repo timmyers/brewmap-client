@@ -45,7 +45,7 @@ class MapMarker extends React.Component<MapMarkerProps, {}> {
   }
 
   render() {
-    return <div />;
+    return <CustomMarker />;
   }
 }
 
