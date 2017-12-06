@@ -26,26 +26,30 @@ interface MapMarkerProps {
 }
 
 class MapMarker extends React.Component<MapMarkerProps, {}> {
+  markerContainer: HTMLElement;
   marker: mapboxgl.Marker;
 
   static contextTypes = {
     map: PropTypes.object,
   };
 
-  componentDidMount() {
-    console.log(this);
-    console.log('context', this.context.map);
-    this.marker = new mapboxgl.Marker()
-      .setLngLat([this.props.lng, this.props.lat])
-      .addTo(this.context.map);
-  }
-
   componentWillUnmount() {
     this.marker.remove();
   }
 
+  setMarkerContainer(el: HTMLElement) {
+    this.markerContainer = el;
+    this.marker = new mapboxgl.Marker(this.markerContainer)
+      .setLngLat([this.props.lng, this.props.lat])
+      .addTo(this.context.map);
+  }
+
   render() {
-    return <CustomMarker />;
+    return (
+      <div ref={(el: HTMLElement) => this.setMarkerContainer(el)}>
+        <CustomMarker />
+      </div>
+    );
   }
 }
 
@@ -70,7 +74,6 @@ class Map extends React.Component<MapProps, MapState> {
   };
 
   getChildContext() {
-    console.log('getChildContext', this.map);
     return {
       map: this.map,
     };

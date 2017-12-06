@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import HorizontalLayout from 'Components/HorizontalLayout';
 import Paper from 'material-ui/Paper';
 import Button, { ButtonProps } from 'material-ui/Button';
-import Auth from 'Features/Auth';
-
-const auth = new Auth();
+import Auth, { login, logout, isAuthenticated } from 'Features/Auth';
 
 interface HolderProps {
   children?: React.ReactChild;
@@ -51,9 +49,16 @@ const Header = () => (
       <Title>
         Colorado Brewery Map
       </Title>
-      <SignUpButtonStyled raised onClick={() => auth.login()}>
-        Sign Up
-      </SignUpButtonStyled>
+      { !isAuthenticated () ?
+        <SignUpButtonStyled raised onClick={() => login()}>
+          Sign Up
+        </SignUpButtonStyled>
+      :
+        <SignUpButtonStyled raised onClick={() => logout()}>
+          Log Out
+        </SignUpButtonStyled>
+      }
+      <Auth />
     </Layout>
   </StyledHolder>
 );

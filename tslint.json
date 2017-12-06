@@ -6,7 +6,8 @@
     "jsRules": {},
     "rules": {
       "variable-name": [true, "allow-pascal-case"],
-      "import-name": false
+      "import-name": false,
+      "strict-boolean-expressions": false
     },
     "rulesDirectory": []
 }
