@@ -25,6 +25,10 @@ module.exports = {
       {
         test: /\.(svg)$/,
         use: 'file-loader',
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ],
   },
@@ -53,6 +57,6 @@ module.exports = {
       Features: path.resolve(__dirname, 'src/features/'),
       Images: path.resolve(__dirname, 'src/images/'),
     },
-    extensions: ['.js', '.ts.', '.tsx', '.svg'],
+    extensions: ['.js', '.ts.', '.tsx', '.svg', '.css'],
   },
 };

@@ -9,8 +9,8 @@ export default class Auth {
     redirectUri: 'https://www.brewmap.co/login',
     // redirectUri: 'http://localhost:9000/login',
     audience: 'https://brewmap.auth0.com/userinfo',
-    responseType: 'token',
-    scope: 'openid email',
+    responseType: 'token id_token',
+    scope: 'openid',
   });
 
   constructor() {
@@ -19,19 +19,6 @@ export default class Auth {
       if (authResult && authResult.accessToken) {
         window.location.hash = '';
         // displayAuthResults(authResult.accessToken);
-
-        client.mutate({
-          mutation: gql`
-            mutation {
-              authenticateUser(
-                accessToken: "${authResult.accessToken}"
-              ) {
-                id
-                token
-              }
-            }
-          `,
-        });
       }
       console.log(authResult);
     });
