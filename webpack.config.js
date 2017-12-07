@@ -43,6 +43,7 @@ module.exports = {
       favicon: './src/images/favicon.ico'
     }),
     new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       'process.env.API_URL': JSON.stringify(process.env.API_URL),
       'process.env.AUTH0_DOMAIN': JSON.stringify('brewmap-dev.auth0.com'),
       'process.env.AUTH0_REDIRECT_URI': JSON.stringify('http://localhost:9000/login'),
