@@ -45,10 +45,10 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       'process.env.API_URL': JSON.stringify(process.env.API_URL),
-      'process.env.AUTH0_DOMAIN': JSON.stringify('brewmap-dev.auth0.com'),
-      'process.env.AUTH0_REDIRECT_URI': JSON.stringify('http://localhost:9000/login'),
-      'process.env.AUTH0_CLIENT_ID': JSON.stringify('ChJgeELQMf3c2eoJ2Gx1ZE7Igjf8nocA'),
-      'process.env.AUTH0_AUDIENCE': JSON.stringify('https://brewmap-dev.auth0.com/userinfo'),
+      'process.env.AUTH0_DOMAIN': JSON.stringify(process.env.AUTH0_DOMAIN),
+      'process.env.AUTH0_REDIRECT_URI': JSON.stringify(process.env.AUTH0_REDIRECT_URI),
+      'process.env.AUTH0_CLIENT_ID': JSON.stringify(process.env.AUTH0_CLIENT_ID),
+      'process.env.AUTH0_AUDIENCE': JSON.stringify(process.env.AUTH0_AUDIENCE),
     }),
   ],
   devServer: {
