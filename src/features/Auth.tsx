@@ -13,7 +13,7 @@ class Auth {
     redirectUri: process.env.AUTH0_REDIRECT_URI,
     audience: process.env.AUTH0_AUDIENCE,
     responseType: 'token id_token',
-    scope: 'openid email',
+    scope: 'openid profile',
   });
   userProfile : auth0.Auth0UserProfile;
 

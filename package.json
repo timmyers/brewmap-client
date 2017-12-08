@@ -9,6 +9,7 @@
     "@types/auth0-js": "^8.10.2",
     "@types/react-dom": "^16.0.3",
     "apollo-client-preset": "^1.0.3",
+    "apollo-link-context": "^1.0.2",
     "auth0-js": "^8.11.3",
     "graphql": "^0.11.7",
     "graphql-tag": "^2.5.0",
@@ -61,7 +62,7 @@
         "AUTH0_DOMAIN": "brewmap-dev.auth0.com",
         "AUTH0_REDIRECT_URI": "http://localhost:9000/login",
         "AUTH0_CLIENT_ID": "ChJgeELQMf3c2eoJ2Gx1ZE7Igjf8nocA",
-        "AUTH0_AUDIENCE": "https://brewmap-dev.auth0.com/userinfo"
+        "AUTH0_AUDIENCE": "https://api.brewmap.co"
       }
     }
   }
