@@ -5,7 +5,9 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import VerticalLayout from 'Components/VerticalLayout';
 import { MapStore } from 'State/map';
-import BreweryListItem from './BreweryListItem';
+import BreweryListItemTyped from './BreweryListItem';
+
+const BreweryListItem = BreweryListItemTyped as any;
 
 const Outer = styled(VerticalLayout)`
 `;
@@ -45,7 +47,7 @@ const BreweryListState = ({ data } : { data: any }) => (
 const ListWithData = graphql(gql`
   query {
     allBreweries {
-      name, id, lat, lng
+      name, id, lat, lng, visited
     }
   }
 `)(BreweryListState);
