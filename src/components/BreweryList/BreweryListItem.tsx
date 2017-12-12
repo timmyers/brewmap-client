@@ -20,14 +20,23 @@ const Inner = styled(HorizontalLayout)`
   margin-left: 20px;
 `;
 
-const Item = ({ brewery } : ItemProps) => (
-  <Outer>
-    <Inner full>
-      <BreweryTitle>
-        { brewery.name }
-      </BreweryTitle>
-    </Inner>
-  </Outer>
-);
+class Item extends React.PureComponent<ItemProps, {}> {
+  shouldComponentUpdate(newProps: ItemProps) {
+    return newProps.brewery.name !== this.props.brewery.name;
+  }
+
+  render() {
+    const { brewery } = this.props;
+    return (
+      <Outer>
+        <Inner full>
+          <BreweryTitle>
+            { brewery.name }
+          </BreweryTitle>
+        </Inner>
+      </Outer>
+    );
+  }
+}
 
 export default Item;
