@@ -11,12 +11,12 @@
       clientID: 'ChJgeELQMf3c2eoJ2Gx1ZE7Igjf8nocA',
       scope: 'openid profile',
       responseType: 'token id_token',
-      redirectUri: 'http://localhost:3000'
+      redirectUri: 'http://localhost:9000/login'
     });
   </script>
   <script>
     webAuth.parseHash(window.location.hash, function (err, response) {
-      parent.postMessage(err || response, 'http://localhost:3000');
+      parent.postMessage(err || response, 'http://localhost:9000/login');
     });
   </script>
 </head>

@@ -52,17 +52,21 @@ module.exports = {
       'process.env.AUTH0_AUDIENCE': JSON.stringify(process.env.AUTH0_AUDIENCE),
     }),
     new CopyWebpackPlugin([
-      { from: 'src/silent.html', to: '[name]' },
+      { from: 'src/silent.html', to: 'silent.html' },
     ])
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
-    host: '0.0.0.0',
-    open: true,
+    host: 'localhost',
     historyApiFallback: true,
-  },
+    historyApiFallback: {
+      rewrites: [
+        { from: /silent/, to: '/silent.html' },
+      ]
+    }
+  } ,
   resolve: {
     alias: {
       Layouts: path.resolve(__dirname, 'src/layouts/'),

@@ -37,6 +37,11 @@ class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+
+    // setTimeout(() => {
+    //   console.log('RENEWING');
+    //   this.renewToken();
+    // },         5000);
   }
 
   logout() {
@@ -52,6 +57,23 @@ class Auth {
     // access token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+  }
+
+  renewToken() {
+    this.auth0.renewAuth(
+      {
+        audience: process.env.AUTH0_AUDIENCE,
+        redirectUri: 'http://localhost:9000/silent',
+        usePostMessage: true,
+      },
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          this.setSession(result);
+        }
+      },
+    );
   }
 
   login() {
