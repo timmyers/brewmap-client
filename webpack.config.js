@@ -52,7 +52,7 @@ module.exports = {
       'process.env.AUTH0_AUDIENCE': JSON.stringify(process.env.AUTH0_AUDIENCE),
     }),
     new CopyWebpackPlugin([
-      { from: 'src/silent.html', to: 'silent.html' },
+      { from: 'src/silent.html', to: '[name]' },
     ])
   ],
   devServer: {
