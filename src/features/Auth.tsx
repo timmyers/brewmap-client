@@ -83,6 +83,7 @@ const auth = new Auth();
 export const login = () => auth.login();
 export const logout = () => auth.logout();
 export const isAuthenticated = () => auth.isAuthenticated();
+export const getAccessToken = () => auth.getAccessToken();
 
 const Login : React.SFC = ({}, context: { router: { history: History }}) => {
   console.log(context);
