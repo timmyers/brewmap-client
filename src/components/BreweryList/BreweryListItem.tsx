@@ -28,7 +28,7 @@ const Inner = styled(HorizontalLayout)`
 
 class Item extends React.Component<ItemProps, {}> {
   shouldComponentUpdate(newProps: ItemProps) {
-    return newProps.brewery.name !== this.props.brewery.name;
+    return newProps.brewery.visited !== this.props.brewery.visited;
   }
 
   render() {
@@ -58,7 +58,9 @@ class Item extends React.Component<ItemProps, {}> {
 
 const ItemQL = graphql(gql`
   mutation setVisited($brewery: String!, $visited: Boolean!) {
-    setVisited(brewery: $brewery, visited: $visited)
+    setVisited(brewery: $brewery, visited: $visited) {
+      id, visited
+    }
   }
 `)(Item);
 
