@@ -120,7 +120,7 @@ class Map extends React.Component<MapProps, MapState> {
       <div style={style} ref={(el: any) => this.mapContainer = el}>
         { ready && !this.props.data.loading &&
           this.props.data.allBreweries.map((brewery: any, i: number) => (
-          <MapMarker key={i}
+          <MapMarker key={brewery.id}
             lat={brewery.lat}
             lng={brewery.lng}
           >

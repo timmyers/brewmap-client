@@ -1,6 +1,6 @@
 import { observable } from 'mobx';
 
-class MapState{
+class MapState {
   @observable viewboxTop: number;
   @observable viewboxBottom: number;
   @observable viewboxLeft: number;

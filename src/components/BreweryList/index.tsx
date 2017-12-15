@@ -26,14 +26,13 @@ const BreweryList = observer((props: any) => {
              brewery.lat > props.mapState.viewboxBottom &&
              brewery.lng < props.mapState.viewboxRight &&
              brewery.lng > props.mapState.viewboxLeft;
-
     });
 
   return (
     <Outer full scroll>
       <Inner>
         {!props.data.loading && breweries.map((brewery: any, i: number) => (
-          <BreweryListItem brewery={brewery} key={i}/>
+          <BreweryListItem brewery={brewery} key={brewery.id}/>
         ))}
       </Inner>
     </Outer>
