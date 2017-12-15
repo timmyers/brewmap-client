@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 import { History } from 'history';
 import gql from 'graphql-tag';
 import { client } from '../apollo';
+import { authStore } from 'State/auth';
 
 class Auth {
   auth0 = new auth0.WebAuth({
@@ -22,6 +23,7 @@ class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
+        authStore.loggedIn = true;
         history.replace('/');
         console.log('refreshing query');
         client.query({
@@ -56,6 +58,7 @@ class Auth {
   }
 
   logout() {
+    authStore.loggedIn = false;
     // Clear access token and ID token from local storage
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');

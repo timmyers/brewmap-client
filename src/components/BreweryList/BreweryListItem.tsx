@@ -2,10 +2,12 @@ import * as React from 'react';
 import styled from 'styled-components';
 import StylablePaper from 'Components/StylablePaper';
 import HorizontalLayout from 'Components/HorizontalLayout';
+import { observer } from 'mobx-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Checkbox from 'material-ui/Checkbox';
 import BreweryTitle from './BreweryTitle';
+import { authStore } from 'State/auth';
 
 interface ItemProps {
   brewery: {
@@ -14,6 +16,7 @@ interface ItemProps {
     visited: boolean;
   };
   mutate: any;
+  showCheckbox: boolean;
 }
 
 const Outer = styled(StylablePaper)`
@@ -26,35 +29,42 @@ const Inner = styled(HorizontalLayout)`
   margin-left: 20px;
 `;
 
+@observer
 class Item extends React.Component<ItemProps, {}> {
   shouldComponentUpdate(newProps: ItemProps) {
     return newProps.brewery.visited !== this.props.brewery.visited;
   }
 
   render() {
-    const { brewery, mutate } = this.props;
+    const { brewery, mutate, showCheckbox } = this.props;
     return (
       <Outer>
         <Inner full>
           <BreweryTitle>
             { brewery.name }
           </BreweryTitle>
-          <Checkbox
-            checked={brewery.visited}
-            onChange={(e, checked) => {
-              mutate({
-                variables: {
-                  brewery: brewery.id,
-                  visited: checked,
-                },
-              });
-            }}
-          />
+          { showCheckbox &&
+            <Checkbox
+              checked={brewery.visited}
+              onChange={(e, checked) => {
+                mutate({
+                  variables: {
+                    brewery: brewery.id,
+                    visited: checked,
+                  },
+                });
+              }}
+            />
+          }
         </Inner>
       </Outer>
     );
   }
 }
+
+const ItemObservable = (props: any) => (
+  <Item {...props} showCheckbox={authStore.loggedIn} />
+);
 
 const ItemQL = graphql(gql`
   mutation setVisited($brewery: String!, $visited: Boolean!) {
@@ -62,6 +72,6 @@ const ItemQL = graphql(gql`
       id, visited
     }
   }
-`)(Item);
+`)(ItemObservable);
 
 export default ItemQL;
