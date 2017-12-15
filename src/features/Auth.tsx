@@ -138,9 +138,13 @@ const CheckLogin : React.SFC = () => {
   return (null);
 };
 
-export default () => (
-  <div>
-    <Route path="/" component={CheckLogin} />
-    <Route path="/login" component={Login} />
-  </div>
-);
+class LoginComponent extends React.Component {
+  render() {
+    return [
+      <Route path="/" component={CheckLogin} />,
+      <Route path="/login" component={Login} />,
+    ];
+  }
+}
+
+export default LoginComponent;
