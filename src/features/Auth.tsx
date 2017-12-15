@@ -32,7 +32,7 @@ class Auth {
               }
             }
           `,
-          fetchPolicy: 'network-only'
+          fetchPolicy: 'network-only',
         });
         this.getProfile();
       } else if (err) {

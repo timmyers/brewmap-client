@@ -56,6 +56,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from: 'src/silent.html', to: 'silent.html' },
+      { from: 'src/images/beer_map_marker.svg', to: 'auth0_logo.svg' },
     ])
   ],
   devServer: {
