@@ -44,7 +44,7 @@ module.exports = {
       appMountId: 'root',
       title: 'CO BrewMap',
       favicon: './src/images/favicon.ico',
-      headHtmlSnippet: heapSnippet,
+      // headHtmlSnippet: heapSnippet,
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),

@@ -23,6 +23,17 @@ class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         history.replace('/');
+        console.log('refreshing query');
+        client.query({
+          query: gql`
+            query {
+              allBreweries {
+                id, visited
+              }
+            }
+          `,
+          fetchPolicy: 'network-only'
+        });
         this.getProfile();
       } else if (err) {
         history.replace('/');

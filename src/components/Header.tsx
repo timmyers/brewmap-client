@@ -51,7 +51,7 @@ const Header = () => (
       </Title>
       { !isAuthenticated () ?
         <SignUpButtonStyled raised onClick={() => login()}>
-          Sign Up
+          Log In
         </SignUpButtonStyled>
       :
         <SignUpButtonStyled raised onClick={() => logout()}>
