@@ -131,6 +131,16 @@ Login.contextTypes = {
   router: PropTypes.object,
 };
 
+const CheckLogin : React.SFC = () => {
+  if (auth.isAuthenticated) {
+    authStore.loggedIn = true;
+  }
+  return (null);
+};
+
 export default () => (
-  <Route path="/login" component={Login} />
+  <div>
+    <Route path="/" component={CheckLogin} />
+    <Route path="/login" component={Login} />
+  </div>
 );
