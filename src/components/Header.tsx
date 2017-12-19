@@ -50,7 +50,7 @@ const Header = observer(() => (
   <StyledHolder>
     <Layout>
       <Title>
-        Colorado Brewery Map
+        Brewed Here
       </Title>
       { !isAuthenticated () ?
         <SignUpButtonStyled raised onClick={() => login()}>

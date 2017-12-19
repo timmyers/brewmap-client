@@ -64,7 +64,7 @@
         "AUTH0_DOMAIN": "brewmap-dev.auth0.com",
         "AUTH0_REDIRECT_URI": "http://localhost:9000/login",
         "AUTH0_CLIENT_ID": "ChJgeELQMf3c2eoJ2Gx1ZE7Igjf8nocA",
-        "AUTH0_AUDIENCE": "https://api.brewmap.co"
+        "AUTH0_AUDIENCE": "https://api.brewedhere.co"
       }
     }
   }
