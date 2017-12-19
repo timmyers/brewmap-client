@@ -36,7 +36,7 @@ jobs:
           working_directory: ~/repo/dist
           name: Deploy to development
           command: |
-            aws s3 sync . s3://www.brewmap.co
+            aws s3 sync . s3://www.brewedhere.co
             aws cloudfront create-invalidation --distribution-id E2BKA2AXW5LSMP --paths "/*"
 
 workflows:
