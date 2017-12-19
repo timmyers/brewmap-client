@@ -25,8 +25,11 @@ const Outer = styled(StylablePaper)`
 
 const Inner = styled(HorizontalLayout)`
   margin-left: 30px;
+  margin-right: 30px;
+  width: calc(100% - 60px);
+  height: 100%;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 `;
 
 @observer
@@ -39,7 +42,7 @@ class Item extends React.Component<ItemProps, {}> {
     const { brewery, mutate, showCheckbox } = this.props;
     return (
       <Outer>
-        <Inner full>
+        <Inner>
           <BreweryTitle>
             { brewery.name }
           </BreweryTitle>

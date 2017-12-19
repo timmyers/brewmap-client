@@ -6,7 +6,7 @@ import Header from 'Components/HeaderSmallScreen';
 import VerticalLayout from 'Components/VerticalLayout';
 
 const ListHolder = styled.div`
-  height: 20%;
+  height: 15%;
 `;
 
 const SmallScreen = () => (
