@@ -22,6 +22,7 @@ class Auth {
     console.log('handleAuthentication');
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
+        authStore.sub = authResult.idTokenPayload.sub;
         this.setSession(authResult);
         authStore.loggedIn = true;
         history.replace('/');
@@ -120,6 +121,7 @@ export const login = () => auth.login();
 export const logout = () => auth.logout();
 export const isAuthenticated = () => auth.isAuthenticated();
 export const getAccessToken = () => auth.getAccessToken();
+export const getProfile = () => auth.getProfile();
 
 const Login : React.SFC = ({}, context: { router: { history: History }}) => {
   console.log(context);

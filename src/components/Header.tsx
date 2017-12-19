@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import HorizontalLayout from 'Components/HorizontalLayout';
 import Paper from 'material-ui/Paper';
 import Button, { ButtonProps } from 'material-ui/Button';
-import Auth, { login, logout, isAuthenticated } from 'Features/Auth';
+import { Link } from 'react-router-dom';
+import { observer } from 'mobx-react';
+import Auth, { login, logout, isAuthenticated, getProfile } from 'Features/Auth';
+import { authStore } from 'State/auth';
 
 interface HolderProps {
   children?: React.ReactChild;
@@ -43,7 +46,7 @@ const SignUpButtonStyled = styled(SignUpButton)`
   margin-right: 50px;
 `;
 
-const Header = () => (
+const Header = observer(() => (
   <StyledHolder>
     <Layout>
       <Title>
@@ -58,9 +61,16 @@ const Header = () => (
           Log Out
         </SignUpButtonStyled>
       }
+      { authStore.sub === 'facebook|10213198044961330' &&
+        <Link to="/admin">
+          <SignUpButtonStyled raised onClick={() => logout()}>
+            Admin
+          </SignUpButtonStyled>
+        </Link>
+      }
       <Auth />
     </Layout>
   </StyledHolder>
-);
+));
 
 export default Header;

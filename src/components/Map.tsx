@@ -62,7 +62,7 @@ interface MapState {
   ready: boolean;
 }
 
-class Map extends React.Component<MapProps, MapState> {
+export class Map extends React.Component<MapProps, MapState> {
   map: mapboxgl.Map;
   mapContainer: Element;
 

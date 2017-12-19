@@ -47,7 +47,7 @@ class Item extends React.Component<ItemProps, {}> {
             { brewery.name }
           </BreweryTitle>
           { showCheckbox &&
-            <Checkbox style={{fontSize: '80px'}}
+            <Checkbox style={{ fontSize: '80px' }}
               checked={brewery.visited}
               onChange={(e, checked) => {
                 mutate({
