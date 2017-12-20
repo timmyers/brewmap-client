@@ -13,10 +13,10 @@ const SmallScreen = () => (
   <VerticalLayout full>
     <Header />
     <VerticalLayout full>
-      <Map />
       <ListHolder>
         <BreweryList />
       </ListHolder>
+      <Map />
     </VerticalLayout>
   </VerticalLayout>
 );

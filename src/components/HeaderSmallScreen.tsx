@@ -40,15 +40,14 @@ const TopLeft = styled(HorizontalLayout)`
 `;
 
 const Title = styled.span`
-  margin-left: 20px;
-  font-size: 70px;
+  margin-left: 10px;
+  font-size: 25px;
   font-family: Oswald;
   color: #655159;
 `;
 
 const SignUpButtonStyled = styled(SignUpButton)`
-  margin-right: 50px;
-  font-size: 50px !important;
+  margin-right: 10px;
 `;
 
 const Header = () => (

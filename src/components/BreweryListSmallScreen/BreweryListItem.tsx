@@ -20,13 +20,13 @@ interface ItemProps {
 }
 
 const Outer = styled(StylablePaper)`
-  width: 500px;
+  width: 140px;
 `;
 
 const Inner = styled(HorizontalLayout)`
-  margin-left: 30px;
-  margin-right: 30px;
-  width: calc(100% - 60px);
+  margin-left: 10px;
+  margin-right: 10px;
+  width: calc(100% - 20px);
   height: 100%;
   align-items: center;
   justify-content: space-between;
@@ -47,7 +47,7 @@ class Item extends React.Component<ItemProps, {}> {
             { brewery.name }
           </BreweryTitle>
           { showCheckbox &&
-            <Checkbox style={{ fontSize: '80px' }}
+            <Checkbox
               checked={brewery.visited}
               onChange={(e, checked) => {
                 mutate({
