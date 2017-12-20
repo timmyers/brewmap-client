@@ -5,6 +5,7 @@ import HorizontalLayout from 'Components/HorizontalLayout';
 import Paper from 'material-ui/Paper';
 import Button, { ButtonProps } from 'material-ui/Button';
 import Auth, { login, logout, isAuthenticated } from 'Features/Auth';
+import BeerMapMarkerImage from 'Images/beer_map_marker.svg';
 
 interface HolderProps {
   children?: React.ReactChild;
@@ -33,6 +34,11 @@ const Layout = styled(HorizontalLayout)`
   align-items: center;
 `;
 
+const TopLeft = styled(HorizontalLayout)`
+  align-items: center;
+  height: 100%;
+`;
+
 const Title = styled.span`
   margin-left: 20px;
   font-size: 70px;
@@ -48,9 +54,12 @@ const SignUpButtonStyled = styled(SignUpButton)`
 const Header = () => (
   <StyledHolder>
     <Layout>
-      <Title>
-        Brewed Here
-      </Title>
+      <TopLeft>
+        <img src={BeerMapMarkerImage} style={{ height: '70%', marginLeft: '10px' }} />
+        <Title>
+          Brewed Here
+        </Title>
+      </TopLeft>
       { !isAuthenticated () ?
         <SignUpButtonStyled raised onClick={() => login()}>
           Log In

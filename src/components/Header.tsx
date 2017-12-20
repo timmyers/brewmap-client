@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import Auth, { login, logout, isAuthenticated, getProfile } from 'Features/Auth';
 import { authStore } from 'State/auth';
+import BeerMapMarkerImage from 'Images/beer_map_marker.svg';
 
 interface HolderProps {
   children?: React.ReactChild;
@@ -33,6 +34,7 @@ const StyledHolder = styled(Holder)`
 const Layout = styled(HorizontalLayout)`
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 `;
 
 const Title = styled.span`
@@ -49,9 +51,12 @@ const SignUpButtonStyled = styled(SignUpButton)`
 const Header = observer(() => (
   <StyledHolder>
     <Layout>
-      <Title>
-        Brewed Here
-      </Title>
+      <HorizontalLayout>
+        <img src={BeerMapMarkerImage} style={{ height: '70%', marginLeft: '10px' }} />
+        <Title>
+          Brewed Here
+        </Title>
+      </HorizontalLayout>
       { !isAuthenticated () ?
         <SignUpButtonStyled raised onClick={() => login()}>
           Log In
