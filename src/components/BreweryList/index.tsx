@@ -26,7 +26,8 @@ const BreweryList = observer((props: any) => {
              brewery.lat > props.mapState.viewboxBottom &&
              brewery.lng < props.mapState.viewboxRight &&
              brewery.lng > props.mapState.viewboxLeft;
-    });
+    })
+    .sort((a: any, b: any) => a.name < b.name);
 
   return (
     <Outer full scroll>
