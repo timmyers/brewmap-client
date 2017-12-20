@@ -27,7 +27,7 @@ const BreweryList = observer((props: any) => {
              brewery.lng < props.mapState.viewboxRight &&
              brewery.lng > props.mapState.viewboxLeft;
     })
-    .sort((a: any, b: any) => a.localeCompare(b));
+    .sort((a: any, b: any) => a.name.localeCompare(b.name));
 
   return (
     <Outer full scroll>
