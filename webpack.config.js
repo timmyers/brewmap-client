@@ -6,7 +6,8 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // const heapSnippet = '<script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])}; heap.load("3578566086");</script>';
-const heapSnippet = '<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk64oknr1zOjz-loIogxns15U1ZWV5luc&libraries=places"></script>';
+let heapSnippet = '<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk64oknr1zOjz-loIogxns15U1ZWV5luc&libraries=places"></script>';
+heapSnippet += '<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="caa611e4-6986-46a7-ac45-4d9230705a0f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>'
 
 module.exports = {
   entry: './src/index.tsx',
