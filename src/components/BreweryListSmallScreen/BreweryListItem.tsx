@@ -43,9 +43,6 @@ class Item extends React.Component<ItemProps, {}> {
     return (
       <Outer>
         <Inner>
-          <BreweryTitle>
-            { brewery.name }
-          </BreweryTitle>
           { showCheckbox &&
             <Checkbox
               checked={brewery.visited}
@@ -59,6 +56,9 @@ class Item extends React.Component<ItemProps, {}> {
               }}
             />
           }
+          <BreweryTitle>
+            { brewery.name }
+          </BreweryTitle>
         </Inner>
       </Outer>
     );
