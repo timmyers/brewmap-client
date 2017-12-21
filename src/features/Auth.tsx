@@ -134,7 +134,8 @@ Login.contextTypes = {
 };
 
 const CheckLogin : React.SFC = () => {
-  if (auth.isAuthenticated) {
+  if (auth.isAuthenticated()) {
+    console.log('Setting logged in true 2');
     authStore.loggedIn = true;
   }
   return (null);
