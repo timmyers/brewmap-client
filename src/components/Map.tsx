@@ -104,6 +104,10 @@ export class Map extends React.Component<MapProps, MapState> {
     });
   }
 
+  componentDidUpdate() {
+    this.map.resize();
+  }
+
   componentWillUnmount() {
     this.map.remove();
   }
