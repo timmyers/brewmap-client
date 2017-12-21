@@ -26,7 +26,6 @@ const Outer = styled(StylablePaper)`
 const Inner = styled(HorizontalLayout)`
   align-items: center;
   justify-content: flex-start;
-  margin-left: 20px;
 `;
 
 @observer
