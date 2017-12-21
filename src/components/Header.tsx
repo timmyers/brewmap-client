@@ -57,7 +57,7 @@ const Header = observer(() => (
           Brewed Here
         </Title>
       </HorizontalLayout>
-      { !isAuthenticated () ?
+      { !isAuthenticated() ?
         <SignUpButtonStyled raised onClick={() => login()}>
           Log In
         </SignUpButtonStyled>

@@ -59,7 +59,7 @@ const Header = () => (
           Brewed Here
         </Title>
       </TopLeft>
-      { !isAuthenticated () ?
+      { !isAuthenticated() ?
         <SignUpButtonStyled raised onClick={() => login()}>
           Log In
         </SignUpButtonStyled>
