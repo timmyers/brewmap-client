@@ -6,7 +6,7 @@ import Paper from 'material-ui/Paper';
 import Button, { ButtonProps } from 'material-ui/Button';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
-import Auth, { login, logout, isAuthenticated, getProfile } from 'Features/Auth';
+import Auth, { login, logout, getProfile } from 'Features/Auth';
 import { authStore } from 'State/auth';
 import BeerMapMarkerImage from 'Images/beer_map_marker.svg';
 
@@ -48,7 +48,7 @@ const SignUpButtonStyled = styled(SignUpButton)`
   margin-right: 50px;
 `;
 
-const Header = observer(() => (
+const Header = ({ authStore }: { authStore: any }) => (
   <StyledHolder>
     <Layout>
       <HorizontalLayout>
@@ -57,7 +57,7 @@ const Header = observer(() => (
           Brewed Here
         </Title>
       </HorizontalLayout>
-      { !isAuthenticated() ?
+      { !authStore.loggedIn ?
         <SignUpButtonStyled raised onClick={() => login()}>
           Log In
         </SignUpButtonStyled>
@@ -76,6 +76,10 @@ const Header = observer(() => (
       <Auth />
     </Layout>
   </StyledHolder>
+);
+
+const HeaderWithData = observer((props: any) => (
+  <Header {...props} authStore={authStore} />
 ));
 
-export default Header;
+export default HeaderWithData;
