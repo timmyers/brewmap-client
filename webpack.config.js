@@ -87,8 +87,11 @@ const config = {
 
 if (process.env.NODE_ENV !== 'local') {
   config.devtool = 'source-map';
-  config.plugins.push(new UglifyJsPlugin());
+  config.plugins.push(new UglifyJsPlugin({
+    sourceMap: true,
+  }));
 } else {
+  // config.devtool = 'source-map';
   config.devtool = 'eval-source-map';
 }
 
