@@ -144,8 +144,8 @@ const CheckLogin : React.SFC = () => {
 class LoginComponent extends React.Component {
   render() {
     return [
-      <Route path="/" component={CheckLogin} />,
-      <Route path="/login" component={Login} />,
+      <Route path="/" key="/" component={CheckLogin} />,
+      <Route path="/login" key="/login" component={Login} />,
     ];
   }
 }

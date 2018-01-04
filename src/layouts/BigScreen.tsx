@@ -15,7 +15,7 @@ const ListHolder = styled.div`
 class BigScreen extends React.Component {
   render () {
     return ([
-      <Route exact path="/admin" render={() => (
+      <Route exact path="/admin" key="/admin" render={() => (
         <VerticalLayout full>
           <Header />
           <HorizontalLayout full>
@@ -23,7 +23,7 @@ class BigScreen extends React.Component {
           </HorizontalLayout>
         </VerticalLayout>
       )} />,
-      <Route exact path="/" render={() => (
+      <Route exact path="/" key="/" render={() => (
         <VerticalLayout full>
           <Header />
           <HorizontalLayout full>
@@ -34,7 +34,7 @@ class BigScreen extends React.Component {
           </HorizontalLayout>
         </VerticalLayout>
       )} />,
-      <Route exact path="/login" render={() => (
+      <Route exact path="/login" key="/login" render={() => (
         <VerticalLayout full>
           <Header />
           <HorizontalLayout full>
