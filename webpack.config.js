@@ -9,13 +9,12 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 let heapSnippet = '<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk64oknr1zOjz-loIogxns15U1ZWV5luc&libraries=places"></script>';
 heapSnippet += '<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="caa611e4-6986-46a7-ac45-4d9230705a0f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>'
 
-module.exports = {
+const config = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -40,7 +39,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new UglifyJsPlugin(),
     new HtmlWebpackPlugin({
       inject: false,
       template: HtmlWebpackTemplate,
@@ -86,3 +84,12 @@ module.exports = {
     extensions: ['.js', '.ts.', '.tsx', '.svg', '.css'],
   },
 };
+
+if (process.env.NODE_ENV !== 'local') {
+  config.devtool = 'source-map';
+  config.plugins.push(new UglifyJsPlugin());
+} else {
+  config.devtool = 'eval-source-map';
+}
+
+module.exports = config;
