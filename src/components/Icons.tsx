@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import BeerMapMarkerImage from 'Images/beer_map_marker.svg';
+import BeerMapMarkerVisitedImage from 'Images/beer_map_marker_visited.svg';
 
 interface IconProps {
   children?: React.ReactNode;
@@ -9,4 +10,7 @@ interface IconProps {
 
 export const BeerMapMarker = (props : IconProps) => (
   <img src={BeerMapMarkerImage} {...props} />
+);
+export const BeerMapMarkerVisited = (props : IconProps) => (
+  <img src={BeerMapMarkerVisitedImage} {...props} />
 );

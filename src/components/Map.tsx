@@ -6,53 +6,12 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { observer } from 'mobx-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { BeerMapMarker } from 'Components/Icons';
 import HorizontalLayout from 'Components/HorizontalLayout';
+import MapMarker from 'Components/MapMarker';
 import { MapStore } from 'State/map';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoidGltbXllcnMiLCJhIjoiY2phcm9uNHhsNGxyYzMzcGRpaWptMDV6ZCJ9.fI92wckRDkzqVEZipg6crQ';
-
-const CustomMarker: any = styled(BeerMapMarker)`
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  left: -20px;
-  top: -40px;
-`;
-
-interface MapMarkerProps {
-  lat: number;
-  lng: number;
-}
-
-class MapMarker extends React.Component<MapMarkerProps, {}> {
-  markerContainer: HTMLElement;
-  marker: mapboxgl.Marker;
-
-  static contextTypes = {
-    map: PropTypes.object,
-  };
-
-  componentWillUnmount() {
-    this.marker.remove();
-  }
-
-  setMarkerContainer(el: HTMLElement) {
-    this.markerContainer = el;
-    this.marker = new mapboxgl.Marker(this.markerContainer)
-      .setLngLat([this.props.lng, this.props.lat])
-      .addTo(this.context.map);
-  }
-
-  render() {
-    return (
-      <div ref={(el: HTMLElement) => this.setMarkerContainer(el)}>
-        <CustomMarker />
-      </div>
-    );
-  }
-}
 
 interface MapProps {
   data: any;
@@ -127,9 +86,8 @@ export class Map extends React.Component<MapProps, MapState> {
           <MapMarker key={brewery.id}
             lat={brewery.lat}
             lng={brewery.lng}
-          >
-            <CustomMarker />
-          </MapMarker>
+            visited={brewery.visited || false}
+          />
         ))}
       </div>
     );
@@ -139,7 +97,7 @@ export class Map extends React.Component<MapProps, MapState> {
 const MapWithData = observer(graphql(gql`
   query {
     allBreweries {
-      lat, lng, id
+      lat, lng, visited, id
     }
   }
 `)(Map));
