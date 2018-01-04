@@ -40,7 +40,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
+    new UglifyJsPlugin(),
     new HtmlWebpackPlugin({
       inject: false,
       template: HtmlWebpackTemplate,
