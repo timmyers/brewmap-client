@@ -48,7 +48,7 @@ const SignUpButtonStyled = styled(SignUpButton)`
   margin-right: 50px;
 `;
 
-const Header = ({ authStore }: { authStore: any }) => (
+const Header = observer(({ authStore }: { authStore: any }) => (
   <StyledHolder>
     <Layout>
       <HorizontalLayout>
@@ -76,10 +76,10 @@ const Header = ({ authStore }: { authStore: any }) => (
       <Auth />
     </Layout>
   </StyledHolder>
-);
-
-const HeaderWithData = observer((props: any) => (
-  <Header {...props} authStore={authStore} />
 ));
+
+const HeaderWithData = (props: any) => (
+  <Header {...props} authStore={authStore} />
+);
 
 export default HeaderWithData;
