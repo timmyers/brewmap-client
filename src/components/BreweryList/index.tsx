@@ -24,10 +24,11 @@ const Inner = styled(VerticalLayout)`
 const BreweryList = observer((props: any) => {
   const breweries = props.data.loading ? [] : props.data.allBreweries
     .filter((brewery: any) => {
-      return brewery.lat < props.mapState.viewboxTop &&
-             brewery.lat > props.mapState.viewboxBottom &&
-             brewery.lng < props.mapState.viewboxRight &&
-             brewery.lng > props.mapState.viewboxLeft;
+      if (brewery.lat > props.mapState.viewboxTop) return false;
+      if (brewery.lat < props.mapState.viewboxBottom) return false;
+      if (brewery.lng > props.mapState.viewboxRight) return false;
+      if (brewery.lng < props.mapState.viewboxLeft) return false;
+      return true;
     })
     .sort((a: any, b: any) => a.name.localeCompare(b.name));
 
