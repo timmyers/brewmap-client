@@ -4,24 +4,23 @@ import styled from 'styled-components';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { observer } from 'mobx-react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 import HorizontalLayout from 'Components/HorizontalLayout';
 import MapMarker from 'Components/MapMarker';
 import { MapStore } from 'State/Map';
+import { BreweryStore } from 'State/Brewery';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoidGltbXllcnMiLCJhIjoiY2phcm9uNHhsNGxyYzMzcGRpaWptMDV6ZCJ9.fI92wckRDkzqVEZipg6crQ';
 
 interface MapProps {
-  data: any;
+  breweryStore: any;
 }
 
 interface MapState {
   ready: boolean;
 }
 
-export class Map extends React.Component<MapProps, MapState> {
+@observer export class Map extends React.Component<MapProps, MapState> {
   map: mapboxgl.Map;
   mapContainer: Element;
 
@@ -49,17 +48,21 @@ export class Map extends React.Component<MapProps, MapState> {
     this.map.on('load', () => {
       this.setState({ ready: true });
       const bounds = this.map.getBounds();
-      MapStore.viewboxLeft = bounds.getWest();
-      MapStore.viewboxBottom = bounds.getSouth();
-      MapStore.viewboxRight = bounds.getEast();
-      MapStore.viewboxTop = bounds.getNorth();
+      MapStore.viewbox = {
+        left: bounds.getWest(),
+        bottom: bounds.getSouth(),
+        right: bounds.getEast(),
+        top: bounds.getNorth(),
+      };
     });
     this.map.on('move', () => {
       const bounds = this.map.getBounds();
-      MapStore.viewboxLeft = bounds.getWest();
-      MapStore.viewboxBottom = bounds.getSouth();
-      MapStore.viewboxRight = bounds.getEast();
-      MapStore.viewboxTop = bounds.getNorth();
+      MapStore.viewbox = {
+        left: bounds.getWest(),
+        bottom: bounds.getSouth(),
+        right: bounds.getEast(),
+        top: bounds.getNorth(),
+      };
     });
   }
 
@@ -81,8 +84,8 @@ export class Map extends React.Component<MapProps, MapState> {
 
     return (
       <div style={style} ref={(el: any) => this.mapContainer = el}>
-        { ready && !this.props.data.loading &&
-          this.props.data.allBreweries.map((brewery: any, i: number) => (
+        { ready &&
+          this.props.breweryStore.sortedBreweries.map((brewery: any, i: number) => (
           <MapMarker key={brewery.id}
             lat={brewery.lat}
             lng={brewery.lng}
@@ -95,12 +98,8 @@ export class Map extends React.Component<MapProps, MapState> {
   }
 }
 
-const MapWithData = observer(graphql(gql`
-  query {
-    allBreweries {
-      lat, lng, visited, id
-    }
-  }
-`)(Map));
+const MapWithData = () => (
+  <Map breweryStore={BreweryStore} />
+);
 
 export default MapWithData;

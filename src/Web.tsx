@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import DevTools from 'mobx-react-devtools';
 import BigScreen from 'Layouts/BigScreen';
 import SmallScreen from 'Layouts/SmallScreen';
+import 'Components/GetBreweries';
 
 const md = new MobileDetect(window.navigator.userAgent);
 

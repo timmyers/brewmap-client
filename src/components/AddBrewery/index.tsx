@@ -55,18 +55,13 @@ const SearchResult = ({ result, mutate }: {result: any, mutate: any}) => {
     });
   };
 
-  const allBreweries = result ?
+  const breweries = result ?
   [{
     lat,
     lng,
     name,
     id: 0,
   }] : [];
-
-  const data = {
-    allBreweries,
-    loading: false,
-  };
 
   return (
     <HorizontalLayout full>
@@ -84,7 +79,7 @@ const SearchResult = ({ result, mutate }: {result: any, mutate: any}) => {
           </VerticalLayout>
         }
       </Paper>
-      <Map data={data} />
+      <Map breweryStore={{ sortedBreweries: breweries }} />
     </HorizontalLayout>
   );
 };

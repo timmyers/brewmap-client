@@ -1,11 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 import VerticalLayout from 'Components/VerticalLayout';
-import { MapStore } from 'State/Map';
 import { InteractionStore } from 'State/Interaction';
+import { BreweryStore } from 'State/Brewery';
 import BreweryListItemTyped from './BreweryListItem';
 
 const BreweryListItem = BreweryListItemTyped as any;
@@ -22,20 +20,12 @@ const Inner = styled(VerticalLayout)`
 `;
 
 const BreweryList = observer((props: any) => {
-  const breweries = props.data.loading ? [] : props.data.allBreweries
-    .filter((brewery: any) => {
-      if (brewery.lat > props.mapState.viewboxTop) return false;
-      if (brewery.lat < props.mapState.viewboxBottom) return false;
-      if (brewery.lng > props.mapState.viewboxRight) return false;
-      if (brewery.lng < props.mapState.viewboxLeft) return false;
-      return true;
-    })
-    .sort((a: any, b: any) => a.name.localeCompare(b.name));
+  const breweries = props.breweryStore.breweriesInView;
 
   return (
     <Outer full scroll>
       <Inner>
-        {!props.data.loading && breweries.map((brewery: any, i: number) => (
+        {breweries.map((brewery: any, i: number) => (
           <BreweryListItem
             brewery={brewery}
             key={brewery.id}
@@ -46,23 +36,8 @@ const BreweryList = observer((props: any) => {
   );
 });
 
-// const BreweryListState = ({ data } : { data: any }) => (
-//   <BreweryList
-//     data={data}
-//     mapState={MapStore}
-//     interactionStore={InteractionStore}
-//   />
-// );
 const BreweryListState = (props: any) => (
-  <BreweryList {...props} mapState={MapStore} interactionStore={InteractionStore} />
+  <BreweryList {...props} breweryStore={BreweryStore} interactionStore={InteractionStore} />
 );
 
-const ListWithData = graphql(gql`
-  query {
-    allBreweries {
-      name, id, lat, lng, visited
-    }
-  }
-`)(BreweryListState);
-
-export default ListWithData;
+export default BreweryListState;
