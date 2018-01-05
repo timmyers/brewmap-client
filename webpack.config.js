@@ -14,7 +14,7 @@ headSnippet += '<script type="text/javascript" src="https://maps.googleapis.com/
 // Google analytics
 headSnippet += '<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-112000570-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config", "UA-112000570-1");</script>';
 // Drift chat
-headSnippet += '<!-- Start of Async Drift Code -->
+headSnippet += `<!-- Start of Async Drift Code -->
 <script>
 !function() {
   var t;
@@ -37,7 +37,7 @@ headSnippet += '<!-- Start of Async Drift Code -->
 drift.SNIPPET_VERSION = "0.3.1";
 drift.load("74628t7nfckm");
 </script>
-<!-- End of Async Drift Code -->'
+<!-- End of Async Drift Code -->`
 
 const config = {
   entry: './src/index.tsx',
