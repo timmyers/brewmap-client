@@ -26,7 +26,7 @@ const SignUpButton: React.StatelessComponent<ButtonProps> = props => (
 );
 
 const StyledHolder = styled(Holder)`
-  height: 10%;
+  height: 7%;
   background-color: #F9FAF7 !important;
   z-index: 10;
 `;
@@ -38,8 +38,8 @@ const Layout = styled(HorizontalLayout)`
 `;
 
 const Title = styled.span`
-  margin-left: 20px;
-  font-size: 40px;
+  margin-left: 10px;
+  font-size: 4vh;
   font-family: Oswald;
   color: #655159;
 `;
@@ -51,7 +51,7 @@ const SignUpButtonStyled = styled(SignUpButton)`
 const Header = observer(({ authStore }: { authStore: any }) => (
   <StyledHolder>
     <Layout>
-      <HorizontalLayout>
+      <HorizontalLayout fullHeight alignCenter>
         <img src={BeerMapMarkerImage} style={{ height: '70%', marginLeft: '10px' }} />
         <Title>
           Brewed Here
