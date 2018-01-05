@@ -10,6 +10,7 @@ import BreweryListItemTyped from './BreweryListItem';
 const BreweryListItem = BreweryListItemTyped as any;
 
 const Outer = styled(VerticalLayout)`
+  position: absolute;
 `;
 const Inner = styled(VerticalLayout)`
   width: 100%;

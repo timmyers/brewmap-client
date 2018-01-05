@@ -14,7 +14,7 @@ const StyledDiv = styled.div`
   justify-content: center;
   position: relative;
   ${(props: any) => props.full && 'height: 100%; width: 100%;'}
-  ${(props: any) => props.scroll && 'overflow: auto; max-height: 100%;'}
+  ${(props: any) => props.scroll && 'overflow: scroll; max-height: 100%; -webkit-overflow-scrolling: touch;'}
 `;
 
 const VerticalLayout: React.StatelessComponent<VerticalLayoutProps> = props => (
