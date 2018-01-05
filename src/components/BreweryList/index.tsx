@@ -4,7 +4,8 @@ import { observer } from 'mobx-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import VerticalLayout from 'Components/VerticalLayout';
-import { MapStore } from 'State/map';
+import { MapStore } from 'State/Map';
+import { InteractionStore } from 'State/Interaction';
 import BreweryListItemTyped from './BreweryListItem';
 
 const BreweryListItem = BreweryListItemTyped as any;
@@ -34,15 +35,25 @@ const BreweryList = observer((props: any) => {
     <Outer full scroll>
       <Inner>
         {!props.data.loading && breweries.map((brewery: any, i: number) => (
-          <BreweryListItem brewery={brewery} key={brewery.id}/>
+          <BreweryListItem
+            brewery={brewery}
+            key={brewery.id}
+            hovered={brewery.id === props.interactionStore.hoveredBreweryId}/>
         ))}
       </Inner>
     </Outer>
   );
 });
 
-const BreweryListState = ({ data } : { data: any }) => (
-  <BreweryList data={data} mapState={MapStore} />
+// const BreweryListState = ({ data } : { data: any }) => (
+//   <BreweryList
+//     data={data}
+//     mapState={MapStore}
+//     interactionStore={InteractionStore}
+//   />
+// );
+const BreweryListState = (props: any) => (
+  <BreweryList {...props} mapState={MapStore} interactionStore={InteractionStore} />
 );
 
 const ListWithData = graphql(gql`

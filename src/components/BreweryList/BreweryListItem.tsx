@@ -17,10 +17,16 @@ interface ItemProps {
   };
   mutate: any;
   showCheckbox: boolean;
+  hovered: boolean;
+}
+interface OuterProps {
+  hovered: boolean;
 }
 
 const Outer = styled(StylablePaper)`
-  height: 50px;
+  transition-duration: 150ms;
+  height: ${(props: OuterProps) => props.hovered ? '70px' : '50px'};
+  ${(props: OuterProps) => props.hovered && 'background-color: #e0e0e0 !important'}
 `;
 
 const Inner = styled(HorizontalLayout)`
@@ -31,13 +37,15 @@ const Inner = styled(HorizontalLayout)`
 @observer
 class Item extends React.Component<ItemProps, {}> {
   shouldComponentUpdate(newProps: ItemProps) {
-    return newProps.brewery.visited !== this.props.brewery.visited;
+    if (newProps.brewery.visited !== this.props.brewery.visited) return true;
+    if (newProps.hovered !== this.props.hovered) return true;
+    return false;
   }
 
   render() {
-    const { brewery, mutate, showCheckbox } = this.props;
+    const { brewery, mutate, showCheckbox, hovered } = this.props;
     return (
-      <Outer>
+      <Outer hovered={hovered}>
         <Inner full>
           { showCheckbox &&
             <Checkbox

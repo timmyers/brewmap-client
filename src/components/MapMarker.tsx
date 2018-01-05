@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import mapboxgl from 'mapbox-gl';
 import { BeerMapMarker, BeerMapMarkerVisited } from 'Components/Icons';
+import { InteractionStore } from 'State/Interaction';
 
 const CustomMarker: any = styled(BeerMapMarker)`
   width: 40px;
@@ -24,6 +25,7 @@ interface MapMarkerProps {
   lat: number;
   lng: number;
   visited: boolean;
+  breweryId: number;
 }
 
 class MapMarker extends React.Component<MapMarkerProps, {}> {
@@ -54,10 +56,21 @@ class MapMarker extends React.Component<MapMarkerProps, {}> {
       .addTo(this.context.map);
   }
 
+  onMouseEnter() {
+    InteractionStore.hoveredBreweryId = this.props.breweryId;
+  }
+  onMouseLeave() {
+    InteractionStore.hoveredBreweryId = null;
+  }
+
   render() {
     const { visited } = this.props;
     return (
-      <div ref={(el: HTMLElement) => this.setMarkerContainer(el)}>
+      <div
+        ref={(el: HTMLElement) => this.setMarkerContainer(el)}
+        onMouseEnter={() => this.onMouseEnter()}
+        onMouseLeave={() => this.onMouseLeave()}
+      >
         {
           visited ?
             <CustomMarkerVisited />

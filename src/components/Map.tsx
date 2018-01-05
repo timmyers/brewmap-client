@@ -8,7 +8,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import HorizontalLayout from 'Components/HorizontalLayout';
 import MapMarker from 'Components/MapMarker';
-import { MapStore } from 'State/map';
+import { MapStore } from 'State/Map';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoidGltbXllcnMiLCJhIjoiY2phcm9uNHhsNGxyYzMzcGRpaWptMDV6ZCJ9.fI92wckRDkzqVEZipg6crQ';
@@ -87,6 +87,7 @@ export class Map extends React.Component<MapProps, MapState> {
             lat={brewery.lat}
             lng={brewery.lng}
             visited={brewery.visited || false}
+            breweryId={brewery.id}
           />
         ))}
       </div>

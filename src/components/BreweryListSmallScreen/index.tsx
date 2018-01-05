@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import HorizontalLayout from 'Components/HorizontalLayout';
-import { MapStore } from 'State/map';
+import { MapStore } from 'State/Map';
 import BreweryListItemTyped from './BreweryListItem';
 
 const BreweryListItem = BreweryListItemTyped as any;

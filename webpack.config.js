@@ -98,7 +98,7 @@ if (process.env.NODE_ENV !== 'local') {
   }));
 } else {
   // config.devtool = 'source-map';
-  // config.devtool = 'eval-source-map';
+  config.devtool = 'cheap-eval-source-map';
 }
 
 module.exports = config;
