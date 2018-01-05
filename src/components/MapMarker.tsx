@@ -34,6 +34,13 @@ class MapMarker extends React.Component<MapMarkerProps, {}> {
     map: PropTypes.object,
   };
 
+  shouldComponentUpdate(nextProps: MapMarkerProps) {
+    if (nextProps.visited !== this.props.visited) {
+      return true;
+    }
+    return false;
+  }
+
   componentWillUnmount() {
     this.marker.remove();
   }
