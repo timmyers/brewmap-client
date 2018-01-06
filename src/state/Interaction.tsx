@@ -1,7 +1,7 @@
 import { observable } from 'mobx';
 
 class InteractionState {
-  @observable hoveredBreweryId: number;
+  @observable hoveredBreweryId: string;
 }
 
 export const InteractionStore = new InteractionState();

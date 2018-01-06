@@ -79,7 +79,7 @@ const SearchResult = ({ result, mutate }: {result: any, mutate: any}) => {
           </VerticalLayout>
         }
       </Paper>
-      <Map breweryStore={{ sortedBreweries: breweries }} />
+      <Map breweryStore={{ sortedBreweries: breweries }} interactionStore />
     </HorizontalLayout>
   );
 };

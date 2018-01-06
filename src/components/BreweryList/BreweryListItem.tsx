@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 import Checkbox from 'material-ui/Checkbox';
 import BreweryTitle from './BreweryTitle';
 import { authStore } from 'State/auth';
+import { InteractionStore } from 'State/Interaction';
 
 interface ItemProps {
   brewery: {
@@ -29,10 +30,18 @@ const Outer = styled(StylablePaper)`
   ${(props: OuterProps) => props.hovered && 'background-color: #e0e0e0 !important'}
 `;
 
+interface InnerProps {
+  onMouseEnter: Function;
+  onMouseLeave: Function;
+  full: boolean;
+}
 const Inner = styled(HorizontalLayout)`
   align-items: center;
   justify-content: flex-start;
 `;
+const InnerTyped: React.StatelessComponent<InnerProps> = props => (
+  <Inner {...props }/>
+);
 
 @observer
 class Item extends React.Component<ItemProps, {}> {
@@ -42,11 +51,25 @@ class Item extends React.Component<ItemProps, {}> {
     return false;
   }
 
+  onMouseEnter() {
+    console.log('mouse enter');
+    InteractionStore.hoveredBreweryId = this.props.brewery.id;
+  }
+  onMouseLeave() {
+    InteractionStore.hoveredBreweryId = null;
+  }
+
   render() {
     const { brewery, mutate, showCheckbox, hovered } = this.props;
     return (
-      <Outer hovered={hovered}>
-        <Inner full>
+      <Outer
+        hovered={hovered}
+      >
+        <InnerTyped
+          full
+          onMouseEnter={() => this.onMouseEnter()}
+          onMouseLeave={() => this.onMouseLeave()}
+        >
           { showCheckbox &&
             <Checkbox
               checked={brewery.visited}
@@ -63,7 +86,7 @@ class Item extends React.Component<ItemProps, {}> {
           <BreweryTitle>
             { brewery.name }
           </BreweryTitle>
-        </Inner>
+        </InnerTyped>
       </Outer>
     );
   }

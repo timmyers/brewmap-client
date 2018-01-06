@@ -5,27 +5,32 @@ import mapboxgl from 'mapbox-gl';
 import { BeerMapMarker, BeerMapMarkerVisited } from 'Components/Icons';
 import { InteractionStore } from 'State/Interaction';
 
+interface MarkerProps {
+  hovered: boolean;
+}
+
 const CustomMarker: any = styled(BeerMapMarker)`
-  width: 40px;
-  height: 40px;
+  width: ${(props: MarkerProps) => props.hovered ? '50px' : '40px'};
+  height: ${(props: MarkerProps) => props.hovered ? '50px' : '40px'};
   position: absolute;
-  left: -20px;
-  top: -40px;
+  left: ${(props: MarkerProps) => props.hovered ? '-25px' : '-20px'};
+  top: ${(props: MarkerProps) => props.hovered ? '-50px' : '-40px'};
 `;
 
 const CustomMarkerVisited: any = styled(BeerMapMarkerVisited)`
-  width: 40px;
-  height: 40px;
+  width: ${(props: MarkerProps) => props.hovered ? '50px' : '40px'};
+  height: ${(props: MarkerProps) => props.hovered ? '50px' : '40px'};
   position: absolute;
-  left: -20px;
-  top: -40px;
+  left: ${(props: MarkerProps) => props.hovered ? '-25px' : '-20px'};
+  top: ${(props: MarkerProps) => props.hovered ? '-50px' : '-40px'};
 `;
 
 interface MapMarkerProps {
   lat: number;
   lng: number;
   visited: boolean;
-  breweryId: number;
+  breweryId: string;
+  hovered: boolean;
 }
 
 class MapMarker extends React.Component<MapMarkerProps, {}> {
@@ -37,10 +42,8 @@ class MapMarker extends React.Component<MapMarkerProps, {}> {
   };
 
   shouldComponentUpdate(nextProps: MapMarkerProps) {
-    if (nextProps.visited !== this.props.visited) {
-      return true;
-    }
-    return false;
+    return nextProps.visited !== this.props.visited ||
+           nextProps.hovered !== this.props.hovered;
   }
 
   componentWillUnmount() {
@@ -64,7 +67,7 @@ class MapMarker extends React.Component<MapMarkerProps, {}> {
   }
 
   render() {
-    const { visited } = this.props;
+    const { visited, hovered } = this.props;
     return (
       <div
         ref={(el: HTMLElement) => this.setMarkerContainer(el)}
@@ -73,9 +76,9 @@ class MapMarker extends React.Component<MapMarkerProps, {}> {
       >
         {
           visited ?
-            <CustomMarkerVisited />
+            <CustomMarkerVisited hovered={hovered} />
           :
-            <CustomMarker />
+            <CustomMarker hovered={hovered} />
         }
       </div>
     );

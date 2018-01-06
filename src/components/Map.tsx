@@ -8,12 +8,14 @@ import HorizontalLayout from 'Components/HorizontalLayout';
 import MapMarker from 'Components/MapMarker';
 import { MapStore } from 'State/Map';
 import { BreweryStore } from 'State/Brewery';
+import { InteractionStore } from 'State/Interaction';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoidGltbXllcnMiLCJhIjoiY2phcm9uNHhsNGxyYzMzcGRpaWptMDV6ZCJ9.fI92wckRDkzqVEZipg6crQ';
 
 interface MapProps {
   breweryStore: any;
+  interactionStore: any;
 }
 
 interface MapState {
@@ -91,6 +93,7 @@ interface MapState {
             lng={brewery.lng}
             visited={brewery.visited || false}
             breweryId={brewery.id}
+            hovered={brewery.id === this.props.interactionStore.hoveredBreweryId}
           />
         ))}
       </div>
@@ -99,7 +102,7 @@ interface MapState {
 }
 
 const MapWithData = () => (
-  <Map breweryStore={BreweryStore} />
+  <Map breweryStore={BreweryStore} interactionStore={InteractionStore}/>
 );
 
 export default MapWithData;
