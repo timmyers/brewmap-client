@@ -23,7 +23,7 @@ const BreweryList = observer((props: any) => {
   return (
     <Outer full scroll>
       <Inner>
-        {!props.data.loading && breweries.map((brewery: any, i: number) => (
+        {breweries.map((brewery: any, i: number) => (
           <BreweryListItem brewery={brewery} key={brewery.id}/>
         ))}
       </Inner>
