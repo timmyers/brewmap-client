@@ -9,11 +9,6 @@ import VerticalLayout from 'Components/VerticalLayout';
 import HorizontalLayout from 'Components/HorizontalLayout';
 import AddBrewery from 'Components/AddBrewery';
 
-const SearchHolder = styled.div`
-  padding: 5px;
-  background-color: white;
-`;
-
 const RightSide = styled(VerticalLayout)`
   position: absolute;
   height: 100%;
@@ -43,9 +38,7 @@ class BigScreen extends React.Component {
           <HorizontalLayout full>
             <Map />
             <RightSide>
-              <SearchHolder>
-                <BrewerySearch />
-              </SearchHolder>
+              <BrewerySearch />
               <ListHolder>
                 <BreweryList />
               </ListHolder>
