@@ -13,6 +13,7 @@ const Holder = styled(HorizontalLayout)`
 const MyCheckbox = styled(StylableCheckbox)`
   width: 30px !important;
   height: 30px !important;
+  margin-left: -5px;
 `;
 
 const VisitedSpan = styled.span`
@@ -27,10 +28,10 @@ interface Props {
 
 export default ({ visited, onChange } : Props) => (
   <Holder>
-    <VisitedSpan>Visited</VisitedSpan>
     <MyCheckbox
       checked={visited}
       onChange={(e: any, checked: any) => onChange(checked)}
     />
+    <VisitedSpan>Visited</VisitedSpan>
   </Holder>
 );
