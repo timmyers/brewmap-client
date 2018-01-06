@@ -74,7 +74,7 @@ const config = {
       inject: false,
       template: HtmlWebpackTemplate,
       appMountId: 'root',
-      title: 'Brewed Here',
+      title: 'Brewed Here - Visit Colorado Breweries',
       favicon: './src/images/favicon.ico',
       headHtmlSnippet: headSnippet,
       mobile: true
