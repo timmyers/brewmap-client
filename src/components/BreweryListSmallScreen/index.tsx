@@ -1,10 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 import HorizontalLayout from 'Components/HorizontalLayout';
-import { MapStore } from 'State/Map';
+import { BreweryStore } from 'State/Brewery';
 import BreweryListItemTyped from './BreweryListItem';
 
 const BreweryListItem = BreweryListItemTyped as any;
@@ -20,14 +18,7 @@ const Inner = styled(HorizontalLayout)`
 `;
 
 const BreweryList = observer((props: any) => {
-  const breweries = props.data.loading ? [] : props.data.allBreweries
-    .filter((brewery: any) => {
-      return brewery.lat < props.mapState.viewboxTop &&
-             brewery.lat > props.mapState.viewboxBottom &&
-             brewery.lng < props.mapState.viewboxRight &&
-             brewery.lng > props.mapState.viewboxLeft;
-    })
-    .sort((a: any, b: any) => a.name.localeCompare(b.name));
+  const breweries = props.breweryStore.breweriesInView;
 
   return (
     <Outer full scroll>
@@ -40,16 +31,8 @@ const BreweryList = observer((props: any) => {
   );
 });
 
-const BreweryListState = ({ data } : { data: any }) => (
-  <BreweryList data={data} mapState={MapStore} />
+const BreweryListState = (props: any) => (
+  <BreweryList {...props} breweryStore={BreweryStore} />
 );
 
-const ListWithData = graphql(gql`
-  query {
-    allBreweries {
-      name, id, lat, lng, visited
-    }
-  }
-`)(BreweryListState);
-
-export default ListWithData;
+export default BreweryListState;
