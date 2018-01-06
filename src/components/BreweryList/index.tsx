@@ -20,7 +20,10 @@ const Inner = styled(VerticalLayout)`
 `;
 
 const BreweryList = observer((props: any) => {
-  const breweries = props.breweryStore.breweriesInView;
+  const breweries = props.breweryStore.breweriesMatchingSearch.length ?
+    props.breweryStore.breweriesMatchingSearch :
+    props.breweryStore.breweriesInView;
+  // const breweries = props.breweryStore.breweriesMatchingSearch;
 
   return (
     <Outer full scroll>

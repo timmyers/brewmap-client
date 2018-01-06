@@ -1,5 +1,7 @@
-import { observable, computed } from 'mobx';
+import { observable, computed, toJS } from 'mobx';
+import FuzzySearch from 'fuzzy-search';
 import { MapStore } from 'State/Map';
+import { InteractionStore } from 'State/Interaction';
 
 interface Brewery {
   id: string;
@@ -14,6 +16,23 @@ class BreweryState {
 
   @computed get sortedBreweries() {
     return this.breweries.sort((a: Brewery, b: Brewery) => a.name.localeCompare(b.name));
+  }
+
+  @computed get breweriesMatchingSearch() {
+    if (!this.sortedBreweries.length ||
+        !InteractionStore.brewerySearchString.length) {
+      return [];
+    }
+
+    const searcher = new FuzzySearch(
+      this.sortedBreweries,
+      ['name'],
+      {},
+    );
+
+    const result = searcher.search(InteractionStore.brewerySearchString);
+    console.log(result);
+    return result;
   }
 
   @computed get breweriesInView() {
