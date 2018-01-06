@@ -73,7 +73,17 @@ class Item extends React.Component<ItemProps, {}> {
           onMouseLeave={() => this.onMouseLeave()}
         >
           <BreweryTitle title={brewery.name} />
-          <BreweryVisited />
+          <BreweryVisited
+            visited={brewery.visited}
+            onChange={(checked: any) => {
+              mutate({
+                variables: {
+                  brewery: brewery.id,
+                  visited: checked,
+                },
+              });
+            }}
+          />
         </InnerTyped>
       </Outer>
     );

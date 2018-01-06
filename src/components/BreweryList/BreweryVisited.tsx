@@ -20,9 +20,17 @@ const VisitedSpan = styled.span`
   font-family: sans-serif;
 `;
 
-export default () => (
+interface Props {
+  visited: boolean;
+  onChange: Function;
+}
+
+export default ({ visited, onChange } : Props) => (
   <Holder>
     <VisitedSpan>Visited</VisitedSpan>
-    <MyCheckbox />
+    <MyCheckbox
+      checked={visited}
+      onChange={(e: any, checked: any) => onChange(checked)}
+    />
   </Holder>
 );
