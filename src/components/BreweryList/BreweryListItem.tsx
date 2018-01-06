@@ -2,11 +2,12 @@ import * as React from 'react';
 import styled from 'styled-components';
 import StylablePaper from 'Components/StylablePaper';
 import HorizontalLayout from 'Components/HorizontalLayout';
+import VerticalLayout from 'Components/VerticalLayout';
 import { observer } from 'mobx-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Checkbox from 'material-ui/Checkbox';
 import BreweryTitle from './BreweryTitle';
+import BreweryVisited from './BreweryVisited';
 import { authStore } from 'State/auth';
 import { InteractionStore } from 'State/Interaction';
 
@@ -25,8 +26,9 @@ interface OuterProps {
 }
 
 const Outer = styled(StylablePaper)`
+  margin: 5px 0px;
+  padding: 10px;
   transition-duration: 150ms;
-  height: ${(props: OuterProps) => props.hovered ? '70px' : '50px'};
   ${(props: OuterProps) => props.hovered && 'background-color: #e0e0e0 !important'}
 `;
 
@@ -35,7 +37,7 @@ interface InnerProps {
   onMouseLeave: Function;
   full: boolean;
 }
-const Inner = styled(HorizontalLayout)`
+const Inner = styled(VerticalLayout)`
   align-items: center;
   justify-content: flex-start;
 `;
@@ -70,27 +72,26 @@ class Item extends React.Component<ItemProps, {}> {
           onMouseEnter={() => this.onMouseEnter()}
           onMouseLeave={() => this.onMouseLeave()}
         >
-          { showCheckbox &&
-            <Checkbox
-              checked={brewery.visited}
-              onChange={(e, checked) => {
-                mutate({
-                  variables: {
-                    brewery: brewery.id,
-                    visited: checked,
-                  },
-                });
-              }}
-            />
-          }
-          <BreweryTitle>
-            { brewery.name }
-          </BreweryTitle>
+          <BreweryTitle title={brewery.name} />
+          <BreweryVisited />
         </InnerTyped>
       </Outer>
     );
   }
 }
+          // { showCheckbox &&
+          //   <Checkbox
+          //     checked={brewery.visited}
+          //     onChange={(e, checked) => {
+          //       mutate({
+          //         variables: {
+          //           brewery: brewery.id,
+          //           visited: checked,
+          //         },
+          //       });
+          //     }}
+          //   />
+          // }
 
 const ItemObservable = (props: any) => (
   <Item {...props} showCheckbox={authStore.loggedIn} />

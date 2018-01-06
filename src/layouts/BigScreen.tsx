@@ -11,12 +11,17 @@ import AddBrewery from 'Components/AddBrewery';
 
 const SearchHolder = styled.div`
   padding: 5px;
+  background-color: white;
 `;
 
 const RightSide = styled(VerticalLayout)`
-  width: 40%;
+  position: absolute;
+  height: 100%;
+  width: 300px;
+  right: 10px;
   justify-content: flex-start;
 `;
+
 const ListHolder = styled.div`
   width: 100%;
   position: relative;

@@ -6,6 +6,7 @@ interface HorizontalLayoutProps {
   className?: string;
   full?: boolean;
   fullHeight?: boolean;
+  fullWidth?: boolean;
   scroll?: boolean;
   alignCenter?: boolean;
 }
@@ -17,6 +18,7 @@ const StyledDiv = styled.div`
   position: relative;
   ${(props: any) => props.full && 'height: 100%; width: 100%;'}
   ${(props: any) => props.fullHeight && 'height: 100%;'}
+  ${(props: any) => props.fullWidth && 'width: 100%;'}
   ${(props: any) => props.scroll && 'overflow: auto; max-height: 100%;'}
   ${(props: any) => props.alignCenter && 'align-items: center;'}
 `;
