@@ -89,6 +89,7 @@ const config = {
     }),
     new CopyWebpackPlugin([
       { from: 'src/silent.html', to: 'silent.html' },
+      { from: 'src/google0b47c8f10df7961a.html', to: 'google0b47c8f10df7961a.html' },
       { from: 'src/images/beer_map_marker.svg', to: 'auth0_logo.svg' },
     ])
   ],
