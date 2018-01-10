@@ -1,10 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import TextField from 'material-ui/TextField';
-import StylablePaper from 'Components/StylablePaper';
 import { InteractionStore } from 'State/Interaction';
 
-const Holder = styled(StylablePaper)`
+const Holder = styled.div`
   margin: 5px 0px;
   padding: 10px;
 `;

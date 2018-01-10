@@ -10,11 +10,10 @@ import HorizontalLayout from 'Components/HorizontalLayout';
 import AddBrewery from 'Components/AddBrewery';
 
 const RightSide = styled(VerticalLayout)`
-  position: absolute;
   height: 100%;
-  width: 300px;
-  right: 10px;
+  width: 400px;
   justify-content: flex-start;
+  background-color: #f8f8f8;
 `;
 
 const ListHolder = styled.div`

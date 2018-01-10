@@ -5,7 +5,12 @@ import gql from 'graphql-tag';
 const query = gql`
   query {
     allBreweries {
-      name, lat, lng, visited, id
+      id,
+      name,
+      lat,
+      lng,
+      closed,
+      visited
     }
   }
 `;

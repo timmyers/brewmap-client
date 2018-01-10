@@ -8,6 +8,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import BreweryTitle from './BreweryTitle';
 import BreweryVisited from './BreweryVisited';
+import BreweryPermanatelyClosed from './BreweryPermanatelyClosed';
 import { authStore } from 'State/auth';
 import { InteractionStore } from 'State/Interaction';
 
@@ -16,6 +17,7 @@ interface ItemProps {
     name: string;
     id: string;
     visited: boolean;
+    closed: boolean;
   };
   mutate: any;
   showCheckbox: boolean;
@@ -25,8 +27,8 @@ interface OuterProps {
   hovered: boolean;
 }
 
-const Outer = styled(StylablePaper)`
-  margin: 5px 0px;
+const Outer = styled.div`
+  margin: 0px 0px;
   padding: 10px;
   transition-duration: 150ms;
   ${(props: OuterProps) => props.hovered && 'background-color: #e0e0e0 !important'}
@@ -44,6 +46,11 @@ const Inner = styled(VerticalLayout)`
 const InnerTyped: React.StatelessComponent<InnerProps> = props => (
   <Inner {...props }/>
 );
+
+const CheckboxRow = styled(HorizontalLayout)`
+  width: 100%;
+  justify-content: flex-start;
+`;
 
 @observer
 class Item extends React.Component<ItemProps, {}> {
@@ -73,19 +80,22 @@ class Item extends React.Component<ItemProps, {}> {
           onMouseLeave={() => this.onMouseLeave()}
         >
           <BreweryTitle title={brewery.name} />
-          { showCheckbox &&
-            <BreweryVisited
-              visited={brewery.visited}
-              onChange={(checked: any) => {
-                mutate({
-                  variables: {
-                    brewery: brewery.id,
-                    visited: checked,
-                  },
-                });
-              }}
-            />
-          }
+          <CheckboxRow>
+            { showCheckbox &&
+              <BreweryVisited
+                visited={brewery.visited}
+                onChange={(checked: any) => {
+                  mutate({
+                    variables: {
+                      brewery: brewery.id,
+                      visited: checked,
+                    },
+                  });
+                }}
+              />
+            }
+            { brewery.closed && <BreweryPermanatelyClosed />}
+          </CheckboxRow>
         </InnerTyped>
       </Outer>
     );
