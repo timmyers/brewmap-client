@@ -8,7 +8,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import BreweryTitle from './BreweryTitle';
 import BreweryVisited from './BreweryVisited';
-import BreweryPermanatelyClosed from './BreweryPermanatelyClosed';
+import BreweryPermanentlyClosed from './BreweryPermanentlyClosed';
 import { authStore } from 'State/auth';
 import { InteractionStore } from 'State/Interaction';
 
@@ -94,7 +94,7 @@ class Item extends React.Component<ItemProps, {}> {
                 }}
               />
             }
-            { brewery.closed && <BreweryPermanatelyClosed />}
+            { brewery.closed && <BreweryPermanentlyClosed />}
           </CheckboxRow>
         </InnerTyped>
       </Outer>
