@@ -37,7 +37,9 @@ headSnippet += `<!-- Start of Async Drift Code -->
 drift.SNIPPET_VERSION = "0.3.1";
 drift.load("74628t7nfckm");
 </script>
-<!-- End of Async Drift Code -->`
+<!-- End of Async Drift Code -->`;
+headSnippet += '<meta name="application-name" content="Brewed Here">';
+headSnippet += '<meta name="description" content="Find, discover, and track your visits to Colorado breweries.">';
 
 const config = {
   entry: './src/index.tsx',
