@@ -12,7 +12,7 @@ const StyledChip = styled(Chip as any)`
 `;
 
 export default () => (
-  <Tooltip id="tooltip-closed" title="Brewery has permanentlyclosed.">
+  <Tooltip id="tooltip-closed" title="Brewery has permanently closed.">
     <StyledChip
       label="Closed"
     />
