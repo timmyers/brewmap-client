@@ -11,7 +11,7 @@ interface Brewery {
   visited: boolean;
 }
 
-class BreweryState {
+export class BreweryState {
   @observable breweries: Brewery[] = [];
 
   @computed get sortedBreweries() {
@@ -43,6 +43,11 @@ class BreweryState {
                brewery.lng < MapStore.viewbox.right &&
                brewery.lng > MapStore.viewbox.left;
       });
+  }
+
+  @computed get visitedBreweries() {
+    return this.breweries
+      .filter(brewery => brewery.visited);
   }
 }
 

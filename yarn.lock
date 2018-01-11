@@ -3927,6 +3927,12 @@ mapbox-gl@^0.42.2:
     vt-pbf "^3.0.1"
     webworkify "^1.4.0"
 
+material-ui-icons@^1.0.0-beta.17:
+  version "1.0.0-beta.17"
+  resolved "https://registry.yarnpkg.com/material-ui-icons/-/material-ui-icons-1.0.0-beta.17.tgz#5f19af54a2d99eeef347a55414a6853e1c850dc3"
+  dependencies:
+    recompose "^0.26.0"
+
 material-ui@^1.0.0-beta.27:
   version "1.0.0-beta.27"
   resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.27.tgz#f3073b7acffebd1fc6d0339a3260d4555445daf7"

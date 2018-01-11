@@ -8,6 +8,7 @@ import Header from 'Components/Header';
 import VerticalLayout from 'Components/VerticalLayout';
 import HorizontalLayout from 'Components/HorizontalLayout';
 import AddBrewery from 'Components/AddBrewery';
+import Profile from 'Components/Profile';
 
 const RightSide = styled(VerticalLayout)`
   height: 100%;
@@ -31,32 +32,37 @@ const Placeholder = styled.div`
 class BigScreen extends React.Component {
   render () {
     const routes = ['/', '/login'].map(path =>
-      <Route exact path={path} key={path} render={() => (
-        <VerticalLayout full>
-          <Header />
-          <HorizontalLayout full>
-            <Map />
-            <RightSide>
-              <BrewerySearch />
-              <ListHolder>
-                <BreweryList />
-              </ListHolder>
-            </RightSide>
-          </HorizontalLayout>
-        </VerticalLayout>
+      <Route exact path={path} key={path} render={() => ([
+        <Map />,
+        <RightSide>
+          <BrewerySearch />
+          <ListHolder>
+            <BreweryList />
+          </ListHolder>
+        </RightSide>,
+      ])} />,
+    );
+
+    routes.push(
+      <Route exact path="/admin" key="/admin" render={() => (
+        <AddBrewery />
       )} />,
     );
 
-    routes.push(<Route exact path="/admin" key="/admin" render={() => (
+    routes.push(
+      <Route exact path="/profile" key="/profile" render={() => (
+        <Profile />
+      )} />,
+    );
+
+    return (
       <VerticalLayout full>
         <Header />
         <HorizontalLayout full>
-          <AddBrewery />
+          { routes }
         </HorizontalLayout>
       </VerticalLayout>
-    )} />);
-
-    return (routes);
+    );
   }
 }
 

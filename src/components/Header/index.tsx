@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import Auth, { login, logout, getProfile } from 'Features/Auth';
 import { authStore } from 'State/auth';
 import BeerMapMarkerImage from 'Images/beer_map_marker.svg';
+import HeaderMenuButton from './HeaderMenuButton';
 
 interface HolderProps {
   children?: React.ReactChild;
@@ -62,16 +63,9 @@ const Header = observer(({ authStore }: { authStore: any }) => (
           Log In
         </SignUpButtonStyled>
       :
-        <SignUpButtonStyled raised onClick={() => logout()}>
-          Log Out
-        </SignUpButtonStyled>
-      }
-      { authStore.sub === 'facebook|10213198044961330' &&
-        <Link to="/admin">
-          <SignUpButtonStyled raised onClick={() => logout()}>
-            Admin
-          </SignUpButtonStyled>
-        </Link>
+        <HeaderMenuButton 
+          showAdmin={authStore.sub === 'facebook|10213198044961330'}
+        />
       }
       <Auth />
     </Layout>
