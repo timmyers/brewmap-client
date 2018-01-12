@@ -12,7 +12,6 @@ import BreweryPermanentlyClosed from './BreweryPermanentlyClosed';
 import { authStore } from 'State/auth';
 import { InteractionStore } from 'State/Interaction';
 import { isPhone } from 'Layouts/Detect';
-import { isPhoneSized } from 'mobile-detect/mobile-detect';
 
 interface ItemProps {
   brewery: {
