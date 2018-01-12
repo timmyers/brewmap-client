@@ -5,6 +5,7 @@ import HorizontalLayout from 'Components/HorizontalLayout';
 import Paper from 'material-ui/Paper';
 import Button, { ButtonProps } from 'material-ui/Button';
 import Auth, { login, logout, isAuthenticated } from 'Features/Auth';
+import { InteractionStore } from 'State/Interaction';
 import BeerMapMarkerImage from 'Images/beer_map_marker.svg';
 
 interface HolderProps {
@@ -59,15 +60,20 @@ const Header = () => (
           Brewed Here
         </Title>
       </TopLeft>
-      { !isAuthenticated() ?
-        <SignUpButtonStyled raised onClick={() => login()}>
-          Log In
+      <HorizontalLayout fullHeight alignCenter justifyEnd>
+        <SignUpButtonStyled raised onClick={() => InteractionStore.toggleChat()}>
+          Chat
         </SignUpButtonStyled>
-      :
-        <SignUpButtonStyled raised onClick={() => logout()}>
-          Log Out
-        </SignUpButtonStyled>
-      }
+        { !isAuthenticated() ?
+          <SignUpButtonStyled raised onClick={() => login()}>
+            Log In
+          </SignUpButtonStyled>
+        :
+          <SignUpButtonStyled raised onClick={() => logout()}>
+            Log Out
+          </SignUpButtonStyled>
+        }
+      </HorizontalLayout>
       <Auth />
     </Layout>
   </StyledHolder>

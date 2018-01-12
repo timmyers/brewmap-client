@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import Auth, { login, logout, getProfile } from 'Features/Auth';
 import { authStore } from 'State/auth';
+import { InteractionStore } from 'State/Interaction';
 import BeerMapMarkerImage from 'Images/beer_map_marker.svg';
 import HeaderMenuButton from './HeaderMenuButton';
 
@@ -40,33 +41,43 @@ const Layout = styled(HorizontalLayout)`
 
 const Title = styled.span`
   margin-left: 10px;
-  font-size: 4vh;
+  font-size: 20px;
   font-family: Oswald;
   color: #655159;
 `;
 
 const SignUpButtonStyled = styled(SignUpButton)`
-  margin-right: 50px;
+  margin-right: 10px;
+  font-size: 14px;
+  padding: 4px 8px;
+  min-width: 60px;
+  min-height: 30px;
+  height: 50%;
 `;
 
 const Header = observer(({ authStore }: { authStore: any }) => (
   <StyledHolder>
     <Layout>
-      <HorizontalLayout fullHeight alignCenter>
+      <HorizontalLayout fullHeight alignCenter grow justifyStart>
         <img src={BeerMapMarkerImage} style={{ height: '70%', marginLeft: '10px' }} />
         <Title>
           Brewed Here
         </Title>
       </HorizontalLayout>
-      { !authStore.loggedIn ?
-        <SignUpButtonStyled raised onClick={() => login()}>
-          Log In
+      <HorizontalLayout fullHeight alignCenter justifyEnd>
+        <SignUpButtonStyled raised onClick={() => InteractionStore.toggleChat()}>
+          Chat
         </SignUpButtonStyled>
-      :
-        <HeaderMenuButton 
-          showAdmin={authStore.sub === 'facebook|10213198044961330'}
-        />
-      }
+        { !authStore.loggedIn ?
+          <SignUpButtonStyled raised onClick={() => login()}>
+            Log In
+          </SignUpButtonStyled>
+        :
+          <HeaderMenuButton 
+            showAdmin={authStore.sub === 'facebook|10213198044961330'}
+          />
+        }
+      </HorizontalLayout>
       <Auth />
     </Layout>
   </StyledHolder>

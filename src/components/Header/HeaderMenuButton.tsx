@@ -36,10 +36,12 @@ class HeaderMenuButton extends React.Component<TProps, TState> {
     return ([
       <IconButton
         onClick={this.handleMenu}
+        key={'icon'}
       >
         <AccountCircle />
       </IconButton>,
       <HeaderMenu 
+        key={'menu'}
         open={open} 
         handleClose={this.handleClose} 
         anchorEl={anchorEl}

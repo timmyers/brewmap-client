@@ -9,6 +9,9 @@ interface HorizontalLayoutProps {
   fullWidth?: boolean;
   scroll?: boolean;
   alignCenter?: boolean;
+  justifyEnd?: boolean;
+  justifyStart?: boolean;
+  grow?: boolean;
 }
 
 const StyledDiv = styled.div`
@@ -21,6 +24,9 @@ const StyledDiv = styled.div`
   ${(props: any) => props.fullWidth && 'width: 100%;'}
   ${(props: any) => props.scroll && 'overflow: auto; max-height: 100%;'}
   ${(props: any) => props.alignCenter && 'align-items: center;'}
+  ${(props: any) => props.justifyEnd && 'justify-content: flex-end;'}
+  ${(props: any) => props.justifyStart && 'justify-content: flex-start;'}
+  ${(props: any) => props.grow && 'flex-grow: 1;'}
 `;
 
 const HorizontalLayout: React.StatelessComponent<HorizontalLayoutProps> = props => (

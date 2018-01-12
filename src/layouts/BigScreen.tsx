@@ -33,8 +33,8 @@ class BigScreen extends React.Component {
   render () {
     const routes = ['/', '/login'].map(path =>
       <Route exact path={path} key={path} render={() => ([
-        <Map />,
-        <RightSide>
+        <Map key={'map'} />,
+        <RightSide key={'rhs'}>
           <BrewerySearch />
           <ListHolder>
             <BreweryList />

@@ -8,3 +8,4 @@ declare module 'jss-preset-default';
 declare module 'react-jss/lib/JssProvider';
 
 declare var google: any;
+declare var drift: any;

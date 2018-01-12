@@ -11,7 +11,7 @@ const md = new MobileDetect(window.navigator.userAgent);
 const Web = () => (
   <Router>
     <div id="root">
-      { process.env.NODE_ENV === 'local' && <DevTools /> }
+      {/* { process.env.NODE_ENV === 'local' && <DevTools /> } */}
       { md.phone() ? <SmallScreen /> : <BigScreen /> }
     </div>
   </Router>
