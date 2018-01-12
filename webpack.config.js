@@ -41,6 +41,15 @@ drift.load("74628t7nfckm");
 headSnippet += '<meta name="application-name" content="Brewed Here">';
 headSnippet += '<meta name="description" content="Find, discover, and track your visits to Colorado breweries.">';
 
+headSnippet += '<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png" />';
+headSnippet += '<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png" />';
+headSnippet += '<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png" />';
+headSnippet += '<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png" />';
+headSnippet += '<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png" />';
+headSnippet += '<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png" />';
+headSnippet += '<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png" />';
+headSnippet += '<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png" />';
+
 const config = {
   entry: './src/index.tsx',
   output: {
@@ -92,6 +101,14 @@ const config = {
     new CopyWebpackPlugin([
       { from: 'src/silent.html', to: 'silent.html' },
       { from: 'src/images/beer_map_marker.svg', to: 'auth0_logo.svg' },
+      { from: 'src/apple-icons/apple-touch-icon-57x57.png', to: 'apple-icon-57x57.png' },
+      { from: 'src/apple-icons/apple-touch-icon-72x72.png', to: 'apple-icon-72x72.png' },
+      { from: 'src/apple-icons/apple-touch-icon-76x76.png', to: 'apple-icon-76x76.png' },
+      { from: 'src/apple-icons/apple-touch-icon-114x114.png', to: 'apple-icon-114x114.png' },
+      { from: 'src/apple-icons/apple-touch-icon-120x120.png', to: 'apple-icon-120x120.png' },
+      { from: 'src/apple-icons/apple-touch-icon-144x144.png', to: 'apple-icon-144x144.png' },
+      { from: 'src/apple-icons/apple-touch-icon-152x152.png', to: 'apple-icon-152x152.png' },
+      { from: 'src/apple-icons/apple-touch-icon-180x180.png', to: 'apple-icon-180x180.png' },
     ])
   ],
   devServer: {
