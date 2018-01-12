@@ -1,6 +1,6 @@
 import { observable, autorun } from 'mobx';
 
-class InteractionState {
+export class InteractionState {
   @observable hoveredBreweryId: string;
   @observable brewerySearchString: string = '';
 

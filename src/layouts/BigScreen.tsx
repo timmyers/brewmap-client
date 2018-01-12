@@ -37,7 +37,7 @@ class BigScreen extends React.Component {
         <RightSide key={'rhs'}>
           <BrewerySearch />
           <ListHolder>
-            <BreweryList />
+            <BreweryList vertical />
           </ListHolder>
         </RightSide>,
       ])} />,

@@ -11,6 +11,8 @@ import BreweryVisited from './BreweryVisited';
 import BreweryPermanentlyClosed from './BreweryPermanentlyClosed';
 import { authStore } from 'State/auth';
 import { InteractionStore } from 'State/Interaction';
+import { isPhone } from 'Layouts/Detect';
+import { isPhoneSized } from 'mobile-detect/mobile-detect';
 
 interface ItemProps {
   brewery: {
@@ -30,6 +32,14 @@ interface OuterProps {
 const Outer = styled.div`
   margin: 0px 0px;
   padding: 10px;
+  transition-duration: 150ms;
+  ${(props: OuterProps) => props.hovered && 'background-color: #e0e0e0 !important'}
+`;
+
+const OuterPhone = styled.div`
+  margin: 0px 0px;
+  padding: 5px;
+  width: 200px;
   transition-duration: 150ms;
   ${(props: OuterProps) => props.hovered && 'background-color: #e0e0e0 !important'}
 `;
@@ -70,8 +80,11 @@ class Item extends React.Component<ItemProps, {}> {
 
   render() {
     const { brewery, mutate, showCheckbox, hovered } = this.props;
+
+    const OuterUsed = isPhone() ? OuterPhone : Outer;
+
     return (
-      <Outer
+      <OuterUsed
         hovered={hovered}
       >
         <InnerTyped
@@ -97,7 +110,7 @@ class Item extends React.Component<ItemProps, {}> {
             { brewery.closed && <BreweryPermanentlyClosed />}
           </CheckboxRow>
         </InnerTyped>
-      </Outer>
+      </OuterUsed>
     );
   }
 }

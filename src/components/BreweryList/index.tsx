@@ -2,16 +2,17 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
 import VerticalLayout from 'Components/VerticalLayout';
-import { InteractionStore } from 'State/Interaction';
-import { BreweryStore } from 'State/Brewery';
+import HorizontalLayout from 'Components/HorizontalLayout';
+import { InteractionStore, InteractionState } from 'State/Interaction';
+import { BreweryStore, BreweryState } from 'State/Brewery';
 import BreweryListItemTyped from './BreweryListItem';
 
 const BreweryListItem = BreweryListItemTyped as any;
 
-const Outer = styled(VerticalLayout)`
+const OuterVertical = styled(VerticalLayout)`
   position: absolute;
 `;
-const Inner = styled(VerticalLayout)`
+const InnerVertical = styled(VerticalLayout)`
   width: 100%;
   position: absolute;
   top: 0;
@@ -19,23 +20,48 @@ const Inner = styled(VerticalLayout)`
   align-items: stretch;
 `;
 
-const BreweryList = observer((props: any) => {
-  const breweries = props.breweryStore.breweriesMatchingSearch.length ?
-    props.breweryStore.breweriesMatchingSearch :
-    props.breweryStore.breweriesInView;
-  // const breweries = props.breweryStore.breweriesMatchingSearch;
+const OuterHorizontal = styled(HorizontalLayout)`
+  position: absolute;
+`;
+const InnerHorizontal = styled(HorizontalLayout)`
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: stretch;
+`;
+
+interface TProps {
+  vertical: boolean;
+  breweryStore: BreweryState;
+  interactionStore: InteractionState;
+}
+
+const BreweryList = observer(({ vertical, breweryStore, interactionStore } : TProps) => {
+  const breweries = breweryStore.breweriesMatchingSearch.length ?
+    breweryStore.breweriesMatchingSearch :
+    breweryStore.breweriesInView;
+
+  const breweryListItems = breweries.map((brewery: any, i: number) => (
+    <BreweryListItem
+      brewery={brewery}
+      key={brewery.id}
+      hovered={brewery.id === interactionStore.hoveredBreweryId}/>
+  ));
 
   return (
-    <Outer full scroll>
-      <Inner>
-        {breweries.map((brewery: any, i: number) => (
-          <BreweryListItem
-            brewery={brewery}
-            key={brewery.id}
-            hovered={brewery.id === props.interactionStore.hoveredBreweryId}/>
-        ))}
-      </Inner>
-    </Outer>
+    vertical ?
+      <OuterVertical full scroll>
+        <InnerVertical>
+          { breweryListItems }
+        </InnerVertical>
+      </OuterVertical>
+    :
+      <OuterHorizontal full scroll>
+        <InnerHorizontal>
+          { breweryListItems }
+        </InnerHorizontal>
+      </OuterHorizontal>
   );
 });
 
