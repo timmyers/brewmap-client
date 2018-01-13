@@ -9,3 +9,11 @@ declare module 'react-jss/lib/JssProvider';
 
 declare var google: any;
 declare var drift: any;
+
+interface Brewery {
+  name: string;
+  locationName: string;
+  id: string;
+  visited: boolean;
+  closed: boolean;
+}

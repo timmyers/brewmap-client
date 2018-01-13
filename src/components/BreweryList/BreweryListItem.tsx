@@ -7,6 +7,7 @@ import { observer } from 'mobx-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import BreweryTitle from './BreweryTitle';
+import BreweryLocation from './BreweryLocation';
 import BreweryVisited from './BreweryVisited';
 import BreweryPermanentlyClosed from './BreweryPermanentlyClosed';
 import { authStore } from 'State/auth';
@@ -14,18 +15,16 @@ import { InteractionStore } from 'State/Interaction';
 import { isPhone } from 'Layouts/Detect';
 
 interface ItemProps {
-  brewery: {
-    name: string;
-    id: string;
-    visited: boolean;
-    closed: boolean;
-  };
+  brewery: Brewery;
   mutate: any;
   showCheckbox: boolean;
   hovered: boolean;
 }
+
 interface OuterProps {
   hovered: boolean;
+  onMouseEnter: Function;
+  onMouseLeave: Function;
 }
 
 const Outer = styled.div`
@@ -44,10 +43,9 @@ const OuterPhone = styled.div`
 `;
 
 interface InnerProps {
-  onMouseEnter: Function;
-  onMouseLeave: Function;
   full: boolean;
 }
+
 const Inner = styled(VerticalLayout)`
   align-items: center;
   justify-content: flex-start;
@@ -85,13 +83,16 @@ class Item extends React.Component<ItemProps, {}> {
     return (
       <OuterUsed
         hovered={hovered}
+        onMouseEnter={() => this.onMouseEnter()}
+        onMouseLeave={() => this.onMouseLeave()}
       >
         <InnerTyped
           full
-          onMouseEnter={() => this.onMouseEnter()}
-          onMouseLeave={() => this.onMouseLeave()}
         >
           <BreweryTitle title={brewery.name} />
+          { brewery.locationName && 
+            <BreweryLocation title={brewery.locationName } />
+          }
           <CheckboxRow>
             { showCheckbox &&
               <BreweryVisited

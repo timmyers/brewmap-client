@@ -9,7 +9,7 @@ import BrewerySearch from 'Components/BrewerySearch';
 import Profile from 'Components/Profile';
 
 const ListHolder = styled.div`
-  height: 20%;
+  height: 200px;
   background-color: #f8f8f8;
 `;
 

@@ -7,6 +7,7 @@ const query = gql`
     allBreweries {
       id,
       name,
+      locationName,
       lat,
       lng,
       closed,
