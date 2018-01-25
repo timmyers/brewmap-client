@@ -36,7 +36,6 @@ drift.on('ready', (api: any) => {
 });
 
 autorun(() => {
-  console.log('autorun driftapi', driftApi);
   if (InteractionStore.showChat) {
     if (driftApi) {
       driftApi.showWelcomeMessage();

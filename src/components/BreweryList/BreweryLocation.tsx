@@ -4,10 +4,9 @@ import HorizontalLayout from 'Components/HorizontalLayout';
 import Place from 'material-ui-icons/Place';
 
 const TitleHolder = styled(HorizontalLayout)`
-  margin-top: 5px;
-  width: 100%;
   justify-content: flex-start;
   align-items: center;
+  margin-right: 10px;
 `;
 
 const TitleSpan = styled.span`

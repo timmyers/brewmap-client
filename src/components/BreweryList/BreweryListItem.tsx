@@ -9,6 +9,7 @@ import gql from 'graphql-tag';
 import BreweryTitle from './BreweryTitle';
 import BreweryLocation from './BreweryLocation';
 import BreweryVisited from './BreweryVisited';
+import BreweryWebsite from './BreweryWebsite';
 import BreweryPermanentlyClosed from './BreweryPermanentlyClosed';
 import { authStore } from 'State/auth';
 import { InteractionStore } from 'State/Interaction';
@@ -54,8 +55,10 @@ const InnerTyped: React.StatelessComponent<InnerProps> = props => (
   <Inner {...props }/>
 );
 
-const CheckboxRow = styled(HorizontalLayout)`
+const Row = styled(HorizontalLayout)`
   width: 100%;
+  margin-top: 5px;
+  align-items: center;
   justify-content: flex-start;
 `;
 
@@ -90,10 +93,17 @@ class Item extends React.Component<ItemProps, {}> {
           full
         >
           <BreweryTitle title={brewery.name} />
-          { brewery.locationName && 
-            <BreweryLocation title={brewery.locationName } />
+          { (brewery.locationName || brewery.website) &&
+            <Row>
+              { brewery.locationName && 
+                <BreweryLocation title={brewery.locationName } />
+              }
+              { brewery.website &&
+                <BreweryWebsite url={brewery.website} />
+              }
+            </Row>
           }
-          <CheckboxRow>
+          <Row>
             { showCheckbox &&
               <BreweryVisited
                 visited={brewery.visited}
@@ -108,7 +118,7 @@ class Item extends React.Component<ItemProps, {}> {
               />
             }
             { brewery.closed && <BreweryPermanentlyClosed />}
-          </CheckboxRow>
+          </Row>
         </InnerTyped>
       </OuterUsed>
     );

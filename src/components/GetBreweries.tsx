@@ -8,6 +8,7 @@ const query = gql`
       id,
       name,
       locationName,
+      website,
       lat,
       lng,
       closed,
@@ -21,7 +22,6 @@ const observableQuery =
     query,
   });
 
-console.log(observableQuery);
 observableQuery.subscribe({
   next: ({ data }: { data: any }) => {
     BreweryStore.breweries = data.allBreweries;

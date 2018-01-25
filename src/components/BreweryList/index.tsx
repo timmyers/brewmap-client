@@ -42,26 +42,21 @@ const BreweryList = observer(({ vertical, breweryStore, interactionStore } : TPr
     breweryStore.breweriesMatchingSearch :
     breweryStore.breweriesInView;
 
-  const breweryListItems = breweries.map((brewery: any, i: number) => (
-    <BreweryListItem
-      brewery={brewery}
-      key={brewery.id}
-      hovered={brewery.id === interactionStore.hoveredBreweryId}/>
-  ));
+  const Outer = vertical ? OuterVertical : OuterHorizontal;
+  const Inner = vertical ? InnerVertical : InnerHorizontal;
 
   return (
-    vertical ?
-      <OuterVertical full scroll>
-        <InnerVertical>
-          { breweryListItems }
-        </InnerVertical>
-      </OuterVertical>
-    :
-      <OuterHorizontal full scroll>
-        <InnerHorizontal>
-          { breweryListItems }
-        </InnerHorizontal>
-      </OuterHorizontal>
+    <Outer full scroll>
+      <Inner>
+        { breweries.map((brewery: any, i: number) => (
+          <BreweryListItem
+            brewery={brewery}
+            key={brewery.id}
+            hovered={brewery.id === interactionStore.hoveredBreweryId}
+          />
+        ))}
+      </Inner>
+    </Outer> 
   );
 });
 
