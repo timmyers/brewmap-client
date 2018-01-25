@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import HorizontalLayout from 'Components/HorizontalLayout';
 import Place from 'material-ui-icons/Place';
+import Tooltip from 'material-ui/Tooltip';
 
 const TitleHolder = styled(HorizontalLayout)`
   justify-content: flex-start;
@@ -24,10 +25,12 @@ interface Props {
 }
 
 export default ({ title }: Props) => (
-  <TitleHolder>
-    <PlaceIcon />
-    <TitleSpan>
-      { title}
-    </TitleSpan>
-  </TitleHolder>
+  <Tooltip id="tooltip-location" title="Brewery has multiple locations.">
+    <TitleHolder>
+      <PlaceIcon />
+      <TitleSpan>
+        { title}
+      </TitleSpan>
+    </TitleHolder>
+  </Tooltip>
 );
